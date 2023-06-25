@@ -1,5 +1,15 @@
+import { ThemeProvider } from 'styled-components'
+
+import BasicLayout from './layouts/BasicLayout'
+
+import theme from './styles/theme'
+
 function App() {
-  return <div>Welcome my app!</div>
+  return (
+    <ThemeProvider theme={theme}>
+      <BasicLayout />
+    </ThemeProvider>
+  )
 }
 
 export default App
