@@ -1,17 +1,8 @@
 import ReactDOM from 'react-dom/client'
 
-import { ThemeProvider } from 'styled-components'
+import { RouterProvider } from 'react-router-dom'
 
-import theme from './styles/theme'
-import GlobalStyles from './styles/global'
-
-// components
-import App from './App'
+import router from './router/'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
-root.render(
-  <ThemeProvider theme={theme}>
-    <GlobalStyles />
-    <App />
-  </ThemeProvider>,
-)
+root.render(<RouterProvider router={router} />)
