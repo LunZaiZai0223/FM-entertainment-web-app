@@ -19,6 +19,7 @@ const GlobalStyles = createGlobalStyle`
     min-height: 100vh;
     text-rendering: optimizeSpeed;
     font-family: ${({ theme }) => theme.fonts};
+    background-color: ${({ theme }) => theme.colors.primary};
     font-size: 1rem;
     line-height: 1;
   }
