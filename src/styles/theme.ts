@@ -25,6 +25,8 @@ const theme = {
     tealBlue: '#0D7490',
     emeraldGreen: '#11766E',
     fieryRed: '#FC4747',
+    steelGrayBlue: '#87888D',
+    black: '#000000',
   },
   fonts: 'Outfit, sans-serif',
 }
