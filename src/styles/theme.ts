@@ -27,6 +27,7 @@ const theme = {
     fieryRed: '#FC4747',
     steelGrayBlue: '#87888D',
     black: '#000000',
+    lightGraySilver: '#E5E7EB',
   },
   fonts: 'Outfit, sans-serif',
 }
