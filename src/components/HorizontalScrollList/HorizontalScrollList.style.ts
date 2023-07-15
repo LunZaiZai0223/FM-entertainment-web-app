@@ -6,6 +6,13 @@ export const Container = styled.section`
   display: flex;
   align-items: center;
   gap: 38px;
+  // 隱藏 scroll 滾輪
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  overscroll-behavior: contain;
 `
 
 export const ItemWrapper = styled.div`
