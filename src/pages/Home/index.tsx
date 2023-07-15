@@ -1,5 +1,14 @@
+// components
+import HorizontalScrollList from '../../components/HorizontalScrollList'
+import CategorySection from '../../components/CategorySection'
+
 const Home = () => {
-  return <h1>This is home page</h1>
+  return (
+    <>
+      <HorizontalScrollList />
+      <CategorySection />
+    </>
+  )
 }
 
 export default Home
