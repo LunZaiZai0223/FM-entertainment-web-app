@@ -1,5 +1,11 @@
+// theme
+import theme from '../../styles/theme'
+
+// components
+import CategoryList from '../../components/CategoryList'
+
 const Tvs = () => {
-  return <h1>This is Tvs page.</h1>
+  return <CategoryList mainColor={theme.colors.emeraldGreen} />
 }
 
 export default Tvs

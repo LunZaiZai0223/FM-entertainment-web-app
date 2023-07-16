@@ -1,5 +1,8 @@
+// components
+import CategoryList from '../../components/CategoryList'
+
 const Movies = () => {
-  return <h1>This is movies page.</h1>
+  return <CategoryList />
 }
 
 export default Movies
