@@ -76,3 +76,8 @@ export const BodySubTitleRegular = BasicTypography({
 export const BodyCaption = BasicTypography({ fontSize: '12px', fontWeight: 400, lineHeight: 1.5 })
 export const BodySubCaption = BasicTypography({ fontSize: '15px', fontWeight: 300 })
 export const BodyAction = BasicTypography({ fontSize: '12px', fontWeight: 500, lineHeight: '16px' })
+export const BodyNavigate = BasicTypography({
+  fontSize: '20px',
+  fontWeight: 500,
+  lineHeight: '28px',
+})
