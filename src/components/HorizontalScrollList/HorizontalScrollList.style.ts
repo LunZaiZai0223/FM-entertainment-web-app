@@ -16,12 +16,19 @@ export const Container = styled.section`
 `
 
 export const ItemWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.black};
-  border-radius: 8px;
+  opacity: 0.75;
+  transition: all 0.25s ease-in;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
 `
 
 export const Item = styled.div`
   width: 470px;
   height: 230px;
   position: relative;
+  border-radius: 8px;
+  overflow: hidden;
 `

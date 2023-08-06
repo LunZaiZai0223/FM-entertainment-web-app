@@ -4,7 +4,6 @@ import axios from 'axios'
 import { MovieEndpointPath, TvEndpointPath } from '../../constants/endpointPaths'
 
 // interfaces
-import { DbItem } from '../../interfaces/dbItem.model'
 import { ListResultModel } from '../../interfaces/commom.model'
 import { DetailResultModel } from '../../interfaces/detail.model'
 import { MovieItemByCategoryModel } from '../../interfaces/movieItemByCategory.model'
@@ -24,10 +23,10 @@ const mainTmdbAxios = axios.create({
 })
 
 export const getTrendingMoviesRequest = async () => {
-  const trendingMovieResponse = await mainTmdbAxios.get<ListResultModel<DbItem[]>>(
-    MovieEndpointPath.Trending(),
-  )
-  return trendingMovieResponse.data
+  const trendingMovieResponse = await mainTmdbAxios.get<
+    ListResultModel<MovieItemByCategoryModel[]>
+  >(MovieEndpointPath.Trending())
+  return { ...trendingMovieResponse.data }
 }
 
 export const getMovieDetailRequest = async (movieId: string) => {
@@ -42,40 +41,37 @@ export const getPopularMoviesRequest = async () => {
     ListResultModel<MovieItemByCategoryModel[]>
   >(MovieEndpointPath.Popular, { params: { page: 1 } })
 
-  return popularMoviesResponse.data
+  return { ...popularMoviesResponse.data }
 }
 
 export const getPlayingMoviesRequest = async () => {
-  const playingMoviesResponse = await mainTmdbAxios.get<ListResultModel<MovieItemByCategoryModel>>(
-    MovieEndpointPath.Playing,
-    { params: { page: 1 } },
-  )
+  const playingMoviesResponse = await mainTmdbAxios.get<
+    ListResultModel<MovieItemByCategoryModel[]>
+  >(MovieEndpointPath.Playing, { params: { page: 1 } })
 
   return playingMoviesResponse.data
 }
 
 export const getUpcomingMoviesRequest = async () => {
-  const upcomingMoviesResponse = await mainTmdbAxios.get<ListResultModel<MovieItemByCategoryModel>>(
-    MovieEndpointPath.Upcoming,
-    { params: { page: 1 } },
-  )
+  const upcomingMoviesResponse = await mainTmdbAxios.get<
+    ListResultModel<MovieItemByCategoryModel[]>
+  >(MovieEndpointPath.Upcoming, { params: { page: 1 } })
 
   return upcomingMoviesResponse.data
 }
 
 export const getTopRatedMoviesRequest = async () => {
-  const topRatedMoviesResponse = await mainTmdbAxios.get<ListResultModel<MovieItemByCategoryModel>>(
-    MovieEndpointPath.TopRated,
-    { params: { page: 1 } },
-  )
+  const topRatedMoviesResponse = await mainTmdbAxios.get<
+    ListResultModel<MovieItemByCategoryModel[]>
+  >(MovieEndpointPath.TopRated, { params: { page: 1 } })
 
   return topRatedMoviesResponse.data
 }
 
 export const getTrendingTvSeriesRequest = async () => {
-  const trendingTvSeriesResponse = await mainTmdbAxios.get<ListResultModel<DbItem[]>>(
-    TvEndpointPath.Trending(),
-  )
+  const trendingTvSeriesResponse = await mainTmdbAxios.get<
+    ListResultModel<TvSeriesItemByCategoryModel[]>
+  >(TvEndpointPath.Trending())
   return trendingTvSeriesResponse.data
 }
 
@@ -96,7 +92,7 @@ export const getPopularTvSeriesRequest = async () => {
 
 export const getAiringTodayTvSeriesRequest = async () => {
   const playingMoviesResponse = await mainTmdbAxios.get<
-    ListResultModel<TvSeriesItemByCategoryModel>
+    ListResultModel<TvSeriesItemByCategoryModel[]>
   >(TvEndpointPath.AiringToday, { params: { page: 1 } })
 
   return playingMoviesResponse.data
@@ -104,7 +100,7 @@ export const getAiringTodayTvSeriesRequest = async () => {
 
 export const getOnTheAirTvSeriesRequest = async () => {
   const upcomingMoviesResponse = await mainTmdbAxios.get<
-    ListResultModel<TvSeriesItemByCategoryModel>
+    ListResultModel<TvSeriesItemByCategoryModel[]>
   >(TvEndpointPath.OnTheAir, { params: { page: 1 } })
 
   return upcomingMoviesResponse.data
@@ -112,7 +108,7 @@ export const getOnTheAirTvSeriesRequest = async () => {
 
 export const getTopRatedTvSeriesRequest = async () => {
   const topRatedMoviesResponse = await mainTmdbAxios.get<
-    ListResultModel<TvSeriesItemByCategoryModel>
+    ListResultModel<TvSeriesItemByCategoryModel[]>
   >(TvEndpointPath.TopRated, { params: { page: 1 } })
 
   return topRatedMoviesResponse.data

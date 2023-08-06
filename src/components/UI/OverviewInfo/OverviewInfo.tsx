@@ -13,17 +13,27 @@ import {
 interface Props {
   containerShouldUseAbsolute?: boolean
   isMain?: boolean
+  type: string
+  releaseYear: string
+  title: string
 }
 
-const OverviewInfo = ({ containerShouldUseAbsolute = false, isMain = false }: Props) => {
+const OverviewInfo = ({
+  containerShouldUseAbsolute = false,
+  isMain = false,
+  type,
+  releaseYear,
+  title,
+}: Props) => {
   return (
     <Container shouldUseAbsolute={containerShouldUseAbsolute}>
       <SubInfoContainer>
-        <SubInfoText>2023</SubInfoText>
+        <SubInfoText>{releaseYear.split('-')[0]}</SubInfoText>
+        <SubInfoText>·</SubInfoText>
         <SubInfoMovieIcon defaultcolor={theme.colors.white} />
-        <SubInfoText>Movie</SubInfoText>
+        <SubInfoText>{type === 'MOVIE' ? 'Movie' : 'TV Series'}</SubInfoText>
       </SubInfoContainer>
-      <InfoTitle isMain={isMain}>Knights of the Zodiac</InfoTitle>
+      <InfoTitle isMain={isMain}>{title}</InfoTitle>
     </Container>
   )
 }
