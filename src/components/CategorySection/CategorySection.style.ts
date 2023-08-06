@@ -12,12 +12,12 @@ export const Container = styled.section`
   }
 `
 
-export const Item = styled.div<{ shouldLarge?: boolean }>`
+export const Item = styled.div<{ shouldBeLarge?: boolean }>`
   height: 250px;
-  grid-column: ${({ shouldLarge }) => `span ${shouldLarge && 2}`};
+  grid-column: ${({ shouldBeLarge }) => `span ${shouldBeLarge && 2}`};
 
   ${media.custom(1200)} {
-    grid-column: ${({ shouldLarge }) => `span ${shouldLarge && 1}`};
+    grid-column: ${({ shouldBeLarge }) => `span ${shouldBeLarge && 1}`};
   }
 `
 
