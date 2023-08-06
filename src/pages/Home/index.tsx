@@ -25,6 +25,7 @@ import HorizontalScrollList, {
   formatPropsToHorizontalProp,
 } from '../../components/HorizontalScrollList'
 import CategorySection from '../../components/CategorySection'
+import Loader from '../../components/Loader'
 
 // interfaces
 import { HorizontalItem } from '../../components/HorizontalScrollList/HorizontalScrollList'
@@ -142,7 +143,7 @@ const Home = () => {
   }
 
   if (isFetchingMovies || isFetchingTvSeries) {
-    return <div>Loading...</div>
+    return <Loader />
   }
 
   if (isFetchingMoviesError || isFetchingTvSeriesError) {
