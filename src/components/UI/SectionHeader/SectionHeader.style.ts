@@ -16,17 +16,18 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.white};
 `
 
-export const CaptionWrapper = styled.div`
+export const CaptionWrapper = styled.div<{ isSecondary?: boolean }>`
   border: 2px solid ${({ theme }) => theme.colors.lightGraySilver};
   text-align: center;
   padding: 2px 8px;
   border-radius: 4px;
+  ${({ isSecondary, theme }) => isSecondary && `background-color: ${theme.colors.white}`}
 `
 
-export const Caption = styled.span`
+export const Caption = styled.span<{ isSecondary?: boolean }>`
   ${BodyCaption};
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme, isSecondary }) => (isSecondary ? theme.colors.black : theme.colors.white)};
 `
 
 export const ActionLink = styled(Link)`
