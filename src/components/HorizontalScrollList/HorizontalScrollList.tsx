@@ -7,7 +7,7 @@ import OverviewInfo from '../UI/OverviewInfo'
 import StyledImage from '../UI/StyledImage'
 
 // constants
-import { TmdbImageEndpoint } from '../../constants/endpointPaths'
+import { TmdbImageEndpoint } from '../../constants/endpointPaths.constant'
 import { RouterPathMap } from '../../constants/routerPathMap.constant'
 
 // styles
@@ -30,8 +30,19 @@ interface Props {
 const HorizontalScrollList = ({ list, sectionTitle, sectionCaption }: Props) => {
   const navigate = useNavigate()
 
-  const handleClickItem = (id: number) => () => {
-    navigate(RouterPathMap.MOVIE_DETAIL(id.toString()))
+  const handleClickItem = (id: number, type: string) => () => {
+    switch (type) {
+      case 'MOVIE':
+        navigate(RouterPathMap.MOVIE_DETAIL(id.toString()))
+        break
+
+      case 'TV':
+        navigate(RouterPathMap.TV_SERIES_DETAIL(id.toString()))
+        break
+
+      default:
+        navigate(RouterPathMap.MOVIE_DETAIL(id.toString()))
+    }
   }
   return (
     <SectionBlock marginLevel='Large'>
@@ -43,7 +54,7 @@ const HorizontalScrollList = ({ list, sectionTitle, sectionCaption }: Props) => 
       <Container>
         {list.map(({ title, releaseYear, imgSrc, type, id }) => {
           return (
-            <ItemWrapper key={id} onClick={handleClickItem(id)}>
+            <ItemWrapper key={id} onClick={handleClickItem(id, type)}>
               <Item>
                 <StyledImage src={`${TmdbImageEndpoint}${imgSrc}`} />
                 <OverviewInfo

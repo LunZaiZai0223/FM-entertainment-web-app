@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 // components
 import SectionBlock from '../UI/SectionBlock'
 import SectionHeader from '../UI/SectionHeader'
@@ -5,7 +7,8 @@ import OverviewInfo from '../UI/OverviewInfo'
 import StyledImage from '../UI/StyledImage'
 
 // constants
-import { TmdbImageEndpoint } from '../../constants/endpointPaths'
+import { TmdbImageEndpoint } from '../../constants/endpointPaths.constant'
+import { RouterPathMap } from '../../constants/routerPathMap.constant'
 
 // interfaces
 import { MovieItemByCategoryModel } from '../../interfaces/movieItemByCategory.model'
@@ -45,7 +48,23 @@ const formatCaption = (inputCaption: InputCaption) => {
 }
 
 const CategorySection = ({ title, caption, dataList }: Props) => {
+  const navigate = useNavigate()
   const currentCaptionGroup = formatCaption(caption)
+  const handleClickItem = (id: number, type: string) => () => {
+    switch (type) {
+      case 'MOVIE':
+        navigate(RouterPathMap.MOVIE_DETAIL(id.toString()))
+        break
+
+      case 'TV':
+        navigate(RouterPathMap.TV_SERIES_DETAIL(id.toString()))
+        break
+
+      default:
+        navigate(RouterPathMap.MOVIE_DETAIL(id.toString()))
+    }
+  }
+
   return (
     <SectionBlock>
       <SectionHeader
@@ -55,9 +74,13 @@ const CategorySection = ({ title, caption, dataList }: Props) => {
       />
       <Container>
         {dataList.map((item, index, self) => {
-          console.log(item)
+          const isTv = 'first_air_date' in item
           return (
-            <Item key={item.id} shouldBeLarge={index >= self.length - 2}>
+            <Item
+              key={item.id}
+              shouldBeLarge={index >= self.length - 2}
+              onClick={handleClickItem(item.id, isTv ? 'TV' : 'MOVIE')}
+            >
               <ImageWrapper>
                 <StyledImage
                   src={`${TmdbImageEndpoint}${item.backdrop_path || (item.poster_path as string)}`}
@@ -66,7 +89,7 @@ const CategorySection = ({ title, caption, dataList }: Props) => {
               <OverviewInfo
                 type={currentCaptionGroup.overviewType}
                 title={'title' in item ? item.title : item.name}
-                releaseYear={'release_date' in item ? item['release_date'] : item['first_air_date']}
+                releaseYear={isTv ? item.first_air_date : item.release_date}
               />
             </Item>
           )

@@ -1,5 +1,3 @@
-import { useRef } from 'react'
-
 // libs
 import { useQuery } from 'react-query'
 
@@ -78,7 +76,6 @@ const tvSeriesTitleAndCaptions = [
 ]
 
 const Home = () => {
-  const counter = useRef(0)
   const {
     isLoading: isFetchingMovies,
     isError: isFetchingMoviesError,
@@ -92,9 +89,6 @@ const Home = () => {
       getTopRatedMoviesRequest(),
     ])
   })
-
-  counter.current += 1
-  console.log('[counter]', counter)
 
   const {
     isLoading: isFetchingTvSeries,

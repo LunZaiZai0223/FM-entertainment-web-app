@@ -6,7 +6,7 @@ interface Props {
 }
 
 const StyledImage = ({ src = '' }: Props) => {
-  return <Img src={src} loading='lazy' />
+  return <Img src={src} loading='lazy' decoding='async' />
 }
 
 export default StyledImage

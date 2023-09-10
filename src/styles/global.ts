@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const GlobalStyles = createGlobalStyle`
   /* Box sizing rules */
@@ -55,7 +56,7 @@ const GlobalStyles = createGlobalStyle`
   }
   /* Set core root defaults */
   html:focus-within {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
   /* A elements that don't have a class get default styles */
   a:not([class]) {
