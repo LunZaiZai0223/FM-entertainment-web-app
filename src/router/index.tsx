@@ -1,11 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom'
 
-// components
+// layouts
 import BasicLayout from '../layouts/BasicLayout'
+
+// pages
 import Home from '../pages/Home'
 import Movies from '../pages/Movies'
 import Tvs from '../pages/Tvs'
 import Search from '../pages/Search'
+import Detail from '../pages/Detail'
 
 // paths
 import { RouterPathMap } from '../constants/routerPathMap.constant'
@@ -24,8 +27,16 @@ const router = createBrowserRouter([
         element: <Movies />,
       },
       {
+        path: RouterPathMap.MOVIE_DETAIL(':id'),
+        element: <Detail type='MOVIE' />,
+      },
+      {
         path: RouterPathMap.TVS(),
         element: <Tvs />,
+      },
+      {
+        path: RouterPathMap.TV_SERIES_DETAIL(':id'),
+        element: <Detail type='TV' />,
       },
       {
         path: RouterPathMap.SEARCH(),

@@ -7,11 +7,12 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+  margin: 0 0 40px;
 `
 
 export const Item = styled.div`
   ${DetailListItem};
-  min-width: 120px;
+  min-width: 150px;
 
   a {
     display: flex;

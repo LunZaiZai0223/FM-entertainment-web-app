@@ -3,7 +3,9 @@ import styled from 'styled-components'
 // common
 import { DetailSubInfo } from '../../../styles/common'
 
-export const Container = styled.div``
+export const Container = styled.div`
+  margin: 0 0 40px;
+`
 
 export const Title = styled.h4`
   ${DetailSubInfo};

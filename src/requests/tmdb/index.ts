@@ -1,13 +1,15 @@
 import axios from 'axios'
 
 // endpoint paths
-import { MovieEndpointPath, TvEndpointPath } from '../../constants/endpointPaths'
+import { MovieEndpointPath, TvEndpointPath } from '../../constants/endpointPaths.constant'
 
 // interfaces
 import { ListResultModel } from '../../interfaces/commom.model'
-import { DetailResultModel } from '../../interfaces/detail.model'
 import { MovieItemByCategoryModel } from '../../interfaces/movieItemByCategory.model'
 import { TvSeriesItemByCategoryModel } from '../../interfaces/tvSeriesItemByCategory.model'
+import { Detail } from '../../interfaces/detail.model'
+import { CastModel } from '../../interfaces/cast.model'
+import { Trailer } from '../../interfaces/trailer.model'
 
 // environment variables
 const { REACT_APP_BASE_TMDB_ENDPOINT, REACT_APP_TMDB_ACCESS_TOKEN } = process.env
@@ -30,10 +32,20 @@ export const getTrendingMoviesRequest = async () => {
 }
 
 export const getMovieDetailRequest = async (movieId: string) => {
-  const movieDetailResponse = await mainTmdbAxios.get<DetailResultModel>(
-    MovieEndpointPath.Detail(movieId),
-  )
+  const movieDetailResponse = await mainTmdbAxios.get<Detail>(MovieEndpointPath.Detail(movieId))
   return movieDetailResponse.data
+}
+
+export const getMovieCastsRequest = async (movieId: string) => {
+  const movieCastsResponse = await mainTmdbAxios.get<CastModel>(MovieEndpointPath.Casts(movieId))
+  return movieCastsResponse.data
+}
+
+export const getMovieVideosRequest = async (movieId: string) => {
+  const movieVideosResponse = await mainTmdbAxios.get<ListResultModel<Trailer[]>>(
+    MovieEndpointPath.Videos(movieId),
+  )
+  return movieVideosResponse.data
 }
 
 export const getPopularMoviesRequest = async () => {
@@ -76,10 +88,20 @@ export const getTrendingTvSeriesRequest = async () => {
 }
 
 export const getTvSeriesDetailRequest = async (tvSeriesId: string) => {
-  const tvSeriesDetailResponse = await mainTmdbAxios.get<DetailResultModel>(
-    TvEndpointPath.Detail(tvSeriesId),
-  )
+  const tvSeriesDetailResponse = await mainTmdbAxios.get<Detail>(TvEndpointPath.Detail(tvSeriesId))
   return tvSeriesDetailResponse.data
+}
+
+export const getTvSeriesCastsRequest = async (movieId: string) => {
+  const movieCastsResponse = await mainTmdbAxios.get<CastModel>(TvEndpointPath.Casts(movieId))
+  return movieCastsResponse.data
+}
+
+export const getTvSeriesVideosRequest = async (movieId: string) => {
+  const movieVideosResponse = await mainTmdbAxios.get<ListResultModel<Trailer[]>>(
+    TvEndpointPath.Videos(movieId),
+  )
+  return movieVideosResponse.data
 }
 
 export const getPopularTvSeriesRequest = async () => {

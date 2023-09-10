@@ -81,3 +81,29 @@ export const BodyNavigate = BasicTypography({
   fontWeight: 500,
   lineHeight: '28px',
 })
+export const DetailTitle = BasicTypography({ fontSize: '48px', fontWeight: 400, lineHeight: 1 })
+export const DetailTagline = BasicTypography({
+  fontSize: '18px',
+  fontWeight: 400,
+  lineHeight: 1.75,
+})
+export const DetailRating = BasicTypography({
+  fontSize: '36px',
+  fontWeight: 500,
+  lineHeight: 1.25,
+})
+export const DetailSubInfo = BasicTypography({
+  fontSize: '18px',
+  fontWeight: 500,
+  lineHeight: 1.25,
+})
+export const DetailSubInfoContent = BasicTypography({
+  fontSize: '18px',
+  fontWeight: 300,
+  lineHeight: 1.25,
+})
+export const DetailListItem = BasicTypography({
+  fontSize: '14px',
+  fontWeight: 500,
+  lineHeight: 1.25,
+})

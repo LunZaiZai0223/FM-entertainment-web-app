@@ -18,6 +18,16 @@ export const BlockText = styled.span`
   ${DetailListItem};
 `
 
+export const Images = styled.div`
+  display: flex;
+  gap: 16px;
+  width: 100%;
+
+  > div {
+    flex: 1;
+  }
+`
+
 export const Block = styled.div`
   margin: 0 0 12px;
 `

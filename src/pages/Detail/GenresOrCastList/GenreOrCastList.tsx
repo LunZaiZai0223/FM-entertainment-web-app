@@ -2,7 +2,7 @@
 import GenreOrCastItem from './GenreOrCastItem'
 
 // interfaces
-import { Genre } from '../../../interfaces/movieDetail.model'
+import { Genre } from '../../../interfaces/detail.model'
 import { Cast } from '../../../interfaces/cast.model'
 
 // styles
