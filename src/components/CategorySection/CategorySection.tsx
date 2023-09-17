@@ -17,15 +17,15 @@ import { TvSeriesItemByCategoryModel } from '../../interfaces/tvSeriesItemByCate
 // styles
 import { Container, Item, ImageWrapper } from './CategorySection.style'
 
-type InputCaption = 'MOVIE' | 'TV'
-
 interface Props {
   title: string
-  caption: InputCaption
+  caption: string
   dataList: MovieItemByCategoryModel[] | TvSeriesItemByCategoryModel[]
+  goToMorePath: string
+  shouldCardLarge?: boolean
 }
 
-const formatCaption = (inputCaption: InputCaption) => {
+const formatCaption = (inputCaption: string) => {
   switch (inputCaption) {
     case 'MOVIE':
       return {
@@ -41,27 +41,27 @@ const formatCaption = (inputCaption: InputCaption) => {
 
     default:
       return {
-        header: 'MOVIE',
-        overviewType: 'Movie',
+        header: '',
+        overviewType: '',
       }
   }
 }
 
-const CategorySection = ({ title, caption, dataList }: Props) => {
+const CategorySection = ({ title, caption, dataList, goToMorePath, shouldCardLarge }: Props) => {
   const navigate = useNavigate()
   const currentCaptionGroup = formatCaption(caption)
   const handleClickItem = (id: number, type: string) => () => {
     switch (type) {
       case 'MOVIE':
-        navigate(RouterPathMap.MOVIE_DETAIL(id.toString()))
+        navigate({ pathname: `${RouterPathMap.MOVIE_DETAIL(id.toString())}` })
         break
 
       case 'TV':
-        navigate(RouterPathMap.TV_SERIES_DETAIL(id.toString()))
+        navigate({ pathname: `${RouterPathMap.TV_SERIES_DETAIL(id.toString())}` })
         break
 
       default:
-        navigate(RouterPathMap.MOVIE_DETAIL(id.toString()))
+        navigate({ pathname: `${RouterPathMap.MOVIE_DETAIL(id.toString())}` })
     }
   }
 
@@ -71,6 +71,7 @@ const CategorySection = ({ title, caption, dataList }: Props) => {
         title={title}
         caption={currentCaptionGroup.header}
         isSecondary={caption === 'TV'}
+        goToMorePath={goToMorePath}
       />
       <Container>
         {dataList.map((item, index, self) => {
@@ -78,7 +79,7 @@ const CategorySection = ({ title, caption, dataList }: Props) => {
           return (
             <Item
               key={item.id}
-              shouldBeLarge={index >= self.length - 2}
+              shouldBeLarge={shouldCardLarge ? index >= self.length - 2 : false}
               onClick={handleClickItem(item.id, isTv ? 'TV' : 'MOVIE')}
             >
               <ImageWrapper>

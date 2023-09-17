@@ -31,7 +31,7 @@ const OverviewInfo = ({
         <SubInfoText>{releaseYear.split('-')[0]}</SubInfoText>
         <SubInfoText>·</SubInfoText>
         <SubInfoMovieIcon defaultcolor={theme.colors.white} />
-        <SubInfoText>{type === 'MOVIE' ? 'Movie' : 'TV Series'}</SubInfoText>
+        <SubInfoText>{type === 'Movie' ? 'Movie' : 'TV Series'}</SubInfoText>
       </SubInfoContainer>
       <InfoTitle isMain={isMain}>{title}</InfoTitle>
     </Container>

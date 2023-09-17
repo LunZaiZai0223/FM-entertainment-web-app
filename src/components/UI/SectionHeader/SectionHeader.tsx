@@ -5,9 +5,10 @@ interface Props {
   title: string
   caption?: string
   isSecondary?: boolean
+  goToMorePath?: string
 }
 
-const SectionHeader = ({ title, caption, isSecondary }: Props) => {
+const SectionHeader = ({ title, caption, isSecondary, goToMorePath }: Props) => {
   return (
     <Header>
       <Title>{title}</Title>
@@ -16,7 +17,7 @@ const SectionHeader = ({ title, caption, isSecondary }: Props) => {
           <Caption isSecondary={isSecondary}>{caption}</Caption>
         </CaptionWrapper>
       )}
-      <ActionLink to='more'>SEE MORE</ActionLink>
+      {goToMorePath && <ActionLink to={goToMorePath}>SEE MORE</ActionLink>}
     </Header>
   )
 }

@@ -30,10 +30,14 @@ import { HorizontalItem } from '../../components/HorizontalScrollList/Horizontal
 import { MovieItemByCategoryModel } from '../../interfaces/movieItemByCategory.model'
 import { TvSeriesItemByCategoryModel } from '../../interfaces/tvSeriesItemByCategory.model'
 
+// constants
+import { RouterPathMap } from '../../constants/routerPathMap.constant'
+
 interface CategoryDataWithTitleAndCaption {
   title: string
   caption: 'MOVIE' | 'TV'
   dataList: MovieItemByCategoryModel[] | TvSeriesItemByCategoryModel[]
+  goToMorePath: string
 }
 
 // local constants
@@ -41,18 +45,22 @@ const moviesTitleAndCaptions = [
   {
     title: 'Popular',
     caption: 'MOVIE' as 'MOVIE' | 'TV',
+    goToMorePath: RouterPathMap.POPULAR_MOVIES(),
   },
   {
     title: 'Now Playing',
     caption: 'MOVIE' as 'MOVIE' | 'TV',
+    goToMorePath: RouterPathMap.NOW_PLAYING_MOVIES(),
   },
   {
     title: 'Upcoming',
     caption: 'MOVIE' as 'MOVIE' | 'TV',
+    goToMorePath: RouterPathMap.UPCOMING_MOVIES(),
   },
   {
     title: 'Top Rated',
     caption: 'MOVIE' as 'MOVIE' | 'TV',
+    goToMorePath: RouterPathMap.TOP_RATED_MOVIES(),
   },
 ]
 
@@ -60,18 +68,22 @@ const tvSeriesTitleAndCaptions = [
   {
     title: 'Popular',
     caption: 'TV' as 'MOVIE' | 'TV',
+    goToMorePath: RouterPathMap.POPULAR_TVS(),
   },
   {
     title: 'Airing Today',
     caption: 'TV' as 'MOVIE' | 'TV',
+    goToMorePath: RouterPathMap.AIRING_TODAY_TVS(),
   },
   {
     title: 'On Air',
     caption: 'TV' as 'MOVIE' | 'TV',
+    goToMorePath: RouterPathMap.ON_AIR_TVS(),
   },
   {
     title: 'Top Rated',
     caption: 'TV' as 'MOVIE' | 'TV',
+    goToMorePath: RouterPathMap.TOP_RATED_TVS(),
   },
 ]
 
@@ -116,6 +128,7 @@ const Home = () => {
         title: moviesTitleAndCaptions[index].title,
         caption: moviesTitleAndCaptions[index].caption,
         dataList: categoryMovieData.results.slice(0, 6),
+        goToMorePath: moviesTitleAndCaptions[index].goToMorePath,
       }
     })
   }
@@ -132,6 +145,7 @@ const Home = () => {
         title: tvSeriesTitleAndCaptions[index].title,
         caption: tvSeriesTitleAndCaptions[index].caption,
         dataList: categoryTvSeriesData.results.slice(0, 6),
+        goToMorePath: tvSeriesTitleAndCaptions[index].goToMorePath,
       }
     })
   }
@@ -152,13 +166,15 @@ const Home = () => {
         list={formattedTrendingMoviesHorizontalList}
       />
       {restHomeTypeMovies.length > 0 &&
-        restHomeTypeMovies.map(({ title, caption, dataList }, index) => {
+        restHomeTypeMovies.map(({ title, caption, dataList, goToMorePath }, index) => {
           return (
             <CategorySection
               title={title}
               caption={caption}
               dataList={dataList as MovieItemByCategoryModel[]}
               key={`${title}-${index}`}
+              goToMorePath={goToMorePath}
+              shouldCardLarge
             />
           )
         })}
@@ -168,13 +184,15 @@ const Home = () => {
         list={formattedTrendingTvSeriesHorizontalList}
       />
       {restHomeTypeTvSeries.length > 0 &&
-        restHomeTypeTvSeries.map(({ title, caption, dataList }, index) => {
+        restHomeTypeTvSeries.map(({ title, caption, dataList, goToMorePath }, index) => {
           return (
             <CategorySection
               title={title}
               caption={caption}
               dataList={dataList as TvSeriesItemByCategoryModel[]}
               key={`${title}-${index}`}
+              goToMorePath={goToMorePath}
+              shouldCardLarge
             />
           )
         })}
