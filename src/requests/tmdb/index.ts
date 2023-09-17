@@ -24,11 +24,11 @@ const mainTmdbAxios = axios.create({
   },
 })
 
-export const getTrendingMoviesRequest = async () => {
+export const getTrendingMoviesRequest = async (params?: { page: number }) => {
   const trendingMovieResponse = await mainTmdbAxios.get<
     ListResultModel<MovieItemByCategoryModel[]>
-  >(MovieEndpointPath.Trending())
-  return { ...trendingMovieResponse.data }
+  >(MovieEndpointPath.Trending(), { params })
+  return trendingMovieResponse.data
 }
 
 export const getMovieDetailRequest = async (movieId: string) => {
@@ -48,42 +48,42 @@ export const getMovieVideosRequest = async (movieId: string) => {
   return movieVideosResponse.data
 }
 
-export const getPopularMoviesRequest = async () => {
+export const getPopularMoviesRequest = async (params?: { page: number }) => {
   const popularMoviesResponse = await mainTmdbAxios.get<
     ListResultModel<MovieItemByCategoryModel[]>
-  >(MovieEndpointPath.Popular, { params: { page: 1 } })
+  >(MovieEndpointPath.Popular, { params })
 
-  return { ...popularMoviesResponse.data }
+  return popularMoviesResponse.data
 }
 
-export const getPlayingMoviesRequest = async () => {
+export const getPlayingMoviesRequest = async (params?: { page: number }) => {
   const playingMoviesResponse = await mainTmdbAxios.get<
     ListResultModel<MovieItemByCategoryModel[]>
-  >(MovieEndpointPath.Playing, { params: { page: 1 } })
+  >(MovieEndpointPath.Playing, { params })
 
   return playingMoviesResponse.data
 }
 
-export const getUpcomingMoviesRequest = async () => {
+export const getUpcomingMoviesRequest = async (params?: { page: number }) => {
   const upcomingMoviesResponse = await mainTmdbAxios.get<
     ListResultModel<MovieItemByCategoryModel[]>
-  >(MovieEndpointPath.Upcoming, { params: { page: 1 } })
+  >(MovieEndpointPath.Upcoming, { params })
 
   return upcomingMoviesResponse.data
 }
 
-export const getTopRatedMoviesRequest = async () => {
+export const getTopRatedMoviesRequest = async (params?: { page: number }) => {
   const topRatedMoviesResponse = await mainTmdbAxios.get<
     ListResultModel<MovieItemByCategoryModel[]>
-  >(MovieEndpointPath.TopRated, { params: { page: 1 } })
+  >(MovieEndpointPath.TopRated, { params })
 
   return topRatedMoviesResponse.data
 }
 
-export const getTrendingTvSeriesRequest = async () => {
+export const getTrendingTvSeriesRequest = async (params?: { page: number }) => {
   const trendingTvSeriesResponse = await mainTmdbAxios.get<
     ListResultModel<TvSeriesItemByCategoryModel[]>
-  >(TvEndpointPath.Trending())
+  >(TvEndpointPath.Trending(), { params })
   return trendingTvSeriesResponse.data
 }
 
@@ -104,34 +104,34 @@ export const getTvSeriesVideosRequest = async (movieId: string) => {
   return movieVideosResponse.data
 }
 
-export const getPopularTvSeriesRequest = async () => {
+export const getPopularTvSeriesRequest = async (params?: { page: number }) => {
   const popularTvSeriesResponse = await mainTmdbAxios.get<
     ListResultModel<TvSeriesItemByCategoryModel[]>
-  >(TvEndpointPath.Popular, { params: { page: 1 } })
+  >(TvEndpointPath.Popular, { params })
 
   return popularTvSeriesResponse.data
 }
 
-export const getAiringTodayTvSeriesRequest = async () => {
+export const getAiringTodayTvSeriesRequest = async (params?: { page: number }) => {
   const playingMoviesResponse = await mainTmdbAxios.get<
     ListResultModel<TvSeriesItemByCategoryModel[]>
-  >(TvEndpointPath.AiringToday, { params: { page: 1 } })
+  >(TvEndpointPath.AiringToday, { params })
 
   return playingMoviesResponse.data
 }
 
-export const getOnTheAirTvSeriesRequest = async () => {
+export const getOnTheAirTvSeriesRequest = async (params?: { page: number }) => {
   const upcomingMoviesResponse = await mainTmdbAxios.get<
     ListResultModel<TvSeriesItemByCategoryModel[]>
-  >(TvEndpointPath.OnTheAir, { params: { page: 1 } })
+  >(TvEndpointPath.OnTheAir, { params })
 
   return upcomingMoviesResponse.data
 }
 
-export const getTopRatedTvSeriesRequest = async () => {
+export const getTopRatedTvSeriesRequest = async (params?: { page: number }) => {
   const topRatedMoviesResponse = await mainTmdbAxios.get<
     ListResultModel<TvSeriesItemByCategoryModel[]>
-  >(TvEndpointPath.TopRated, { params: { page: 1 } })
+  >(TvEndpointPath.TopRated, { params })
 
   return topRatedMoviesResponse.data
 }

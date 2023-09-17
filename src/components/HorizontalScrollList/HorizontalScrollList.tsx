@@ -50,6 +50,11 @@ const HorizontalScrollList = ({ list, sectionTitle, sectionCaption }: Props) => 
         title={sectionTitle}
         caption={sectionCaption}
         isSecondary={sectionCaption === 'tv series'}
+        goToMorePath={
+          sectionCaption === 'tv series'
+            ? RouterPathMap.TRENDING_TVS()
+            : RouterPathMap.TRENDING_MOVIES()
+        }
       />
       <Container>
         {list.map(({ title, releaseYear, imgSrc, type, id }) => {
