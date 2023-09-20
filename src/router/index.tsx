@@ -25,6 +25,8 @@ const MORE_CATEGORY_PAGES = [
   RouterPathMap.AIRING_TODAY_TVS(),
   RouterPathMap.ON_AIR_TVS(),
   RouterPathMap.TOP_RATED_TVS(),
+  RouterPathMap.GENRE_MOVIES(),
+  RouterPathMap.GENRE_TVS(),
 ]
 
 const router = createBrowserRouter([
