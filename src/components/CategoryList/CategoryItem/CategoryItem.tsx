@@ -1,24 +1,21 @@
-import { useNavigate } from 'react-router-dom'
-
 // styles
 import { Container, Wrapper } from './CategoryItem.style'
 
 interface Props {
   label: string
-  destination: string
+  value: number
   index: number
   mainColor?: string
+  onClickHandler: (genreId: number, genreName: string) => void
 }
 
-const CategoryItem = ({ label, destination, index, mainColor }: Props) => {
-  const navigate = useNavigate()
-
-  const handleNavigateCategory = () => {
-    navigate(destination)
-  }
-
+const CategoryItem = ({ label, value, index, mainColor, onClickHandler }: Props) => {
   return (
-    <Container isMain={index % 2 === 0} mainColor={mainColor} onClick={handleNavigateCategory}>
+    <Container
+      isMain={index % 2 === 0}
+      mainColor={mainColor}
+      onClick={() => onClickHandler(value, label)}
+    >
       <Wrapper>{label}</Wrapper>
     </Container>
   )

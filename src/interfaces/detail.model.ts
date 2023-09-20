@@ -1,3 +1,5 @@
+import { Genre } from './genre.model'
+
 interface Collection {
   /** 系列 ID */
   id: number
@@ -7,13 +9,6 @@ interface Collection {
   poster_path: string | null
   /** 系列背景圖片路徑，可能為空 */
   backdrop_path: string | null
-}
-
-export interface Genre {
-  /** 類別 ID */
-  id: number
-  /** 類別名稱 */
-  name: string
 }
 
 interface ProductionCompany {
