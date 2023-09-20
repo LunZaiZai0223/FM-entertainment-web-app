@@ -15,6 +15,8 @@ export const MovieEndpointPath = {
   Playing: '/movie/now_playing',
   Upcoming: '/movie/upcoming',
   TopRated: '/movie/top_rated',
+  Genre: '/genre/movie/list?language=en',
+  ListWithGenre: '/discover/movie',
 }
 
 export const TvEndpointPath = {
@@ -34,6 +36,8 @@ export const TvEndpointPath = {
   AiringToday: '/tv/airing_today',
   OnTheAir: '/tv/on_the_air',
   TopRated: '/tv/top_rated',
+  Genre: '/genre/tv/list?language=en',
+  ListWithGenre: '/discover/tv',
 }
 
 export const TmdbImageEndpoint = 'https://image.tmdb.org/t/p/original'

@@ -14,6 +14,8 @@ import {
   getAiringTodayTvSeriesRequest,
   getOnTheAirTvSeriesRequest,
   getTopRatedTvSeriesRequest,
+  getMoviesWithGenreRequest,
+  getTvSeriesWithGenreRequest,
 } from '../../requests/tmdb'
 
 // interfaces
@@ -33,83 +35,86 @@ import { RouterPathNameEnum } from '../../enums/routerPathName.enum'
 
 // local constants
 const PAGE_NUM = 'pageNum'
+const GENRE = 'genre'
+const GENRE_NAME = 'genreName'
 
 // local helpers
 const getCurrentPageConfig = (pathname: string) => {
   switch (pathname) {
     case RouterPathNameEnum.TRENDING_MOVIES:
       return {
-        onFetch: getTrendingMoviesRequest,
         type: 'MOVIE',
         title: 'Trending Movies',
       }
 
     case RouterPathNameEnum.POPULAR_MOVIES:
       return {
-        onFetch: getPopularMoviesRequest,
         type: 'MOVIE',
         title: 'Popular Movies',
       }
 
     case RouterPathNameEnum.NOW_PLAYING_MOVIES:
       return {
-        onFetch: getPlayingMoviesRequest,
         type: 'MOVIE',
         title: 'Now Playing Movies',
       }
 
     case RouterPathNameEnum.UPCOMING_MOVIES:
       return {
-        onFetch: getUpcomingMoviesRequest,
         type: 'MOVIE',
         title: 'Upcoming Movies',
       }
 
     case RouterPathNameEnum.TOP_RATED_MOVIES:
       return {
-        onFetch: getTopRatedMoviesRequest,
         type: 'MOVIE',
         title: 'Top Rated Movies',
       }
 
     case RouterPathNameEnum.TRENDING_TVS:
       return {
-        onFetch: getTrendingTvSeriesRequest,
         type: 'TV',
         title: 'Trending TV Series',
       }
 
     case RouterPathNameEnum.POPULAR_TVS:
       return {
-        onFetch: getPopularTvSeriesRequest,
         type: 'TV',
         title: 'Popular TV Series',
       }
 
     case RouterPathNameEnum.AIRING_TODAY_TVS:
       return {
-        onFetch: getAiringTodayTvSeriesRequest,
         type: 'TV',
         title: 'TV Series Airing Today',
       }
 
     case RouterPathNameEnum.ON_AIR_TVS:
       return {
-        onFetch: getOnTheAirTvSeriesRequest,
         type: 'TV',
         title: 'TV Series On The Air',
       }
 
     case RouterPathNameEnum.TOP_RATED_TVS:
       return {
-        onFetch: getTopRatedTvSeriesRequest,
         type: 'TV',
         title: 'Top Rated TV Series',
       }
 
+    case RouterPathNameEnum.GENRE_MOVIES:
+      return {
+        type: 'MOVIE',
+        title: (title: string) => title,
+      }
+
+    case RouterPathNameEnum.GENRE_TVS:
+      return {
+        type: 'TV',
+        title: (title: string) => title,
+      }
+
     default:
       return {
-        onFetch: getTrendingTvSeriesRequest,
         type: 'TV',
         title: 'Trending TV Series',
       }
@@ -120,14 +125,65 @@ const MoreCategory = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const { pathname } = useLocation()
   const urlQueryPageNum = searchParams.get(PAGE_NUM) ?? 1
+  const urlGenre = searchParams.get(GENRE)
+  const urlGenreName = searchParams.get(GENRE_NAME) ?? ''
 
   const currentPageConfig = getCurrentPageConfig(pathname)
   const { isLoading, data, isError } = useQuery(
-    [`getMoreCategoryData-${pathname}`, urlQueryPageNum],
-    () => {
-      return currentPageConfig.onFetch({
-        page: urlQueryPageNum ? Number(urlQueryPageNum) : 1,
-      }) as Promise<ListResultModel<MovieItemByCategoryModel[] | TvSeriesItemByCategoryModel[]>>
+    [`getMoreCategoryData-${pathname}${urlGenre ?? ''}`, urlQueryPageNum],
+    (): Promise<ListResultModel<MovieItemByCategoryModel[] | TvSeriesItemByCategoryModel[]>> => {
+      switch (pathname) {
+        case RouterPathNameEnum.TRENDING_MOVIES:
+          return getTrendingMoviesRequest({ page: urlQueryPageNum ? Number(urlQueryPageNum) : 1 })
+
+        case RouterPathNameEnum.POPULAR_MOVIES:
+          return getPopularMoviesRequest({ page: urlQueryPageNum ? Number(urlQueryPageNum) : 1 })
+
+        case RouterPathNameEnum.NOW_PLAYING_MOVIES:
+          return getPlayingMoviesRequest({ page: urlQueryPageNum ? Number(urlQueryPageNum) : 1 })
+
+        case RouterPathNameEnum.UPCOMING_MOVIES:
+          return getUpcomingMoviesRequest({ page: urlQueryPageNum ? Number(urlQueryPageNum) : 1 })
+
+        case RouterPathNameEnum.TOP_RATED_MOVIES:
+          return getTopRatedMoviesRequest({ page: urlQueryPageNum ? Number(urlQueryPageNum) : 1 })
+
+        case RouterPathNameEnum.GENRE_MOVIES:
+          return getMoviesWithGenreRequest({
+            page: urlQueryPageNum ? Number(urlQueryPageNum) : 1,
+            ['with_genres']: Number(urlGenre),
+          })
+
+        case RouterPathNameEnum.TRENDING_TVS:
+          return getTrendingTvSeriesRequest({ page: urlQueryPageNum ? Number(urlQueryPageNum) : 1 })
+
+        case RouterPathNameEnum.POPULAR_TVS:
+          return getPopularTvSeriesRequest({ page: urlQueryPageNum ? Number(urlQueryPageNum) : 1 })
+
+        case RouterPathNameEnum.AIRING_TODAY_TVS:
+          return getAiringTodayTvSeriesRequest({
+            page: urlQueryPageNum ? Number(urlQueryPageNum) : 1,
+          })
+
+        case RouterPathNameEnum.ON_AIR_TVS:
+          return getOnTheAirTvSeriesRequest({
+            page: urlQueryPageNum ? Number(urlQueryPageNum) : 1,
+          })
+
+        case RouterPathNameEnum.TOP_RATED_TVS:
+          return getTopRatedTvSeriesRequest({
+            page: urlQueryPageNum ? Number(urlQueryPageNum) : 1,
+          })
+
+        case RouterPathNameEnum.GENRE_TVS:
+          return getTvSeriesWithGenreRequest({
+            page: urlQueryPageNum ? Number(urlQueryPageNum) : 1,
+            ['with_genres']: Number(urlGenre),
+          })
+
+        default:
+          return getTrendingMoviesRequest({ page: urlQueryPageNum ? Number(urlQueryPageNum) : 1 })
+      }
     },
   )
 
@@ -163,7 +219,11 @@ const MoreCategory = () => {
   return (
     <>
       <CategorySection
-        title={currentPageConfig.title}
+        title={
+          typeof currentPageConfig.title === 'function'
+            ? currentPageConfig.title(urlGenreName)
+            : currentPageConfig.title
+        }
         dataList={data.results}
         caption={currentPageConfig.type}
         goToMorePath={''}

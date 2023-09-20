@@ -7,6 +7,7 @@ import { MovieEndpointPath, TvEndpointPath } from '../../constants/endpointPaths
 import { ListResultModel } from '../../interfaces/commom.model'
 import { MovieItemByCategoryModel } from '../../interfaces/movieItemByCategory.model'
 import { TvSeriesItemByCategoryModel } from '../../interfaces/tvSeriesItemByCategory.model'
+import { GenreModel } from '../../interfaces/genre.model'
 import { Detail } from '../../interfaces/detail.model'
 import { CastModel } from '../../interfaces/cast.model'
 import { Trailer } from '../../interfaces/trailer.model'
@@ -134,4 +135,35 @@ export const getTopRatedTvSeriesRequest = async (params?: { page: number }) => {
   >(TvEndpointPath.TopRated, { params })
 
   return topRatedMoviesResponse.data
+}
+
+export const getMovieGenresRequest = async () => {
+  const movieGenresResponse = await mainTmdbAxios.get<GenreModel>(MovieEndpointPath.Genre)
+
+  return movieGenresResponse.data
+}
+
+export const getTvSeriesGenresRequest = async () => {
+  const tvSeriesGenresResponse = await mainTmdbAxios.get<GenreModel>(TvEndpointPath.Genre)
+
+  return tvSeriesGenresResponse.data
+}
+
+export const getMoviesWithGenreRequest = async (params: { page: number; with_genres: number }) => {
+  const moviesWithGenreResponse = await mainTmdbAxios.get<
+    ListResultModel<MovieItemByCategoryModel[]>
+  >(MovieEndpointPath.ListWithGenre, { params })
+
+  return moviesWithGenreResponse.data
+}
+
+export const getTvSeriesWithGenreRequest = async (params: {
+  page: number
+  with_genres: number
+}) => {
+  const moviesWithGenreResponse = await mainTmdbAxios.get<
+    ListResultModel<TvSeriesItemByCategoryModel[]>
+  >(TvEndpointPath.ListWithGenre, { params })
+
+  return moviesWithGenreResponse.data
 }

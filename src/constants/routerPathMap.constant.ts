@@ -12,9 +12,11 @@ export const RouterPathMap = {
   NOW_PLAYING_MOVIES: () => RouterPathNameEnum.NOW_PLAYING_MOVIES,
   UPCOMING_MOVIES: () => RouterPathNameEnum.UPCOMING_MOVIES,
   TOP_RATED_MOVIES: () => RouterPathNameEnum.TOP_RATED_MOVIES,
+  GENRE_MOVIES: () => RouterPathNameEnum.GENRE_MOVIES,
   TRENDING_TVS: () => RouterPathNameEnum.TRENDING_TVS,
   POPULAR_TVS: () => RouterPathNameEnum.POPULAR_TVS,
   AIRING_TODAY_TVS: () => RouterPathNameEnum.AIRING_TODAY_TVS,
   ON_AIR_TVS: () => RouterPathNameEnum.ON_AIR_TVS,
   TOP_RATED_TVS: () => RouterPathNameEnum.TOP_RATED_TVS,
+  GENRE_TVS: () => RouterPathNameEnum.GENRE_TVS,
 }

@@ -1,6 +1,6 @@
 // interfaces
 import { Cast } from '../../../../interfaces/cast.model'
-import { Genre } from '../../../../interfaces/detail.model'
+import { Genre } from '../../../../interfaces/genre.model'
 
 // styles
 import { ItemCard } from './GenresOrCastItem.style'

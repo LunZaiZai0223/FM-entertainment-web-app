@@ -1,97 +1,48 @@
+import { useNavigate, useLocation, createSearchParams } from 'react-router-dom'
+
+// constants
+import { RouterPathMap } from '../../constants/routerPathMap.constant'
+
 // components
 import CategoryItem from './CategoryItem'
+
+// interfaces
+import { Genre } from '../../interfaces/genre.model'
 
 // styles
 import { Container, Wrapper } from './CategoryList.style'
 
-// test constants
-const TEST_CATEGORY_LIST = [
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-  {
-    label: 'Action',
-    destination: '123',
-  },
-]
-
 interface Props {
   mainColor?: string
+  genreList: Genre[]
 }
 
-const CategoryList = ({ mainColor }: Props) => {
+const CategoryList = ({ mainColor, genreList }: Props) => {
+  const { pathname } = useLocation()
+  const isMovie = pathname.includes('movies')
+  const navigate = useNavigate()
+  const handleClickGenreItem = (genreId: number, genreName: string) => {
+    navigate({
+      pathname: isMovie ? RouterPathMap.GENRE_MOVIES() : RouterPathMap.GENRE_TVS(),
+      search: createSearchParams({
+        genre: genreId.toString(),
+        genreName,
+      }).toString(),
+    })
+  }
+
   return (
     <Container>
       <Wrapper>
-        {TEST_CATEGORY_LIST.map((item, index) => {
+        {genreList.map(({ name, id }, index) => {
           return (
             <CategoryItem
-              label={item.label}
-              destination={item.destination}
-              key={index}
+              label={name}
+              key={id}
+              value={id}
               index={index}
               mainColor={mainColor}
+              onClickHandler={handleClickGenreItem}
             />
           )
         })}
