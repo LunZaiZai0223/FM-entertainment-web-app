@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 // common
 import { svgStyle, StyledSvgProps } from '../../styles/common'
+import { media } from '../../styles/breakpoints'
 
 // assets
 import { ReactComponent as AppIcon } from '../../assets/icons/icon_app.svg'
@@ -36,6 +37,16 @@ export const Nav = styled.nav`
   align-items: center;
   padding: 36px 24px;
   margin: 24px 0 0 16px;
+
+  ${media.tablet} {
+    position: sticky;
+    flex-direction: row;
+    height: auto;
+    padding: 20px;
+    margin: 24px;
+    top: 0;
+    z-index: 50;
+  }
 `
 
 export const NavList = styled.ul`
@@ -43,6 +54,12 @@ export const NavList = styled.ul`
   flex-direction: column;
   align-items: center;
   gap: 40px;
+
+  ${media.tablet} {
+    flex-direction: row;
+    width: 40%;
+    justify-content: space-between;
+  }
 `
 
 export const NavItem = styled.li`

@@ -1,11 +1,19 @@
 import styled from 'styled-components'
-import { DetailSubInfo } from '../../../styles/common'
+
+// common
+import { DetailListItem, DetailSubInfo } from '../../../styles/common'
+import { media } from '../../../styles/breakpoints'
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   ${DetailSubInfo};
+
+  ${media.phone} {
+    margin: 64px 0;
+    ${DetailListItem};
+  }
 `
 
 export const PaginationAction = styled.button<{ borderRadiusType: 'NEXT' | 'PREV' }>`
@@ -30,6 +38,11 @@ export const PaginationAction = styled.button<{ borderRadiusType: 'NEXT' | 'PREV
     background-color: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.black};
   }
+  
+  ${media.phone} {
+    padding: 4px 12px;
+    ${DetailListItem};
+  }
 `
 
 export const CurrentPaginationInfo = styled.div`
@@ -38,4 +51,9 @@ export const CurrentPaginationInfo = styled.div`
   border: 2px solid ${({ theme }) => theme.colors.white};
   padding: 8px 16px;
   ${DetailSubInfo};
+
+  ${media.phone} {
+    padding: 4px 12px;
+    ${DetailListItem};
+  }
 `
