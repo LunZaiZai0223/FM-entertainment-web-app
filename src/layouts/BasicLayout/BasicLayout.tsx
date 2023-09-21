@@ -7,7 +7,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 
 // components
 import Navbar from '../../components/Navbar'
-import SearchBar from '../../components/SearchBar'
+// import SearchBar from '../../components/SearchBar'
 import ScrollToTop from '../../components/UI/ScrollToTop'
 
 // styles
@@ -34,7 +34,7 @@ const BasicLayout = () => {
         <SkeletonTheme baseColor='#202020' highlightColor='#444'>
           <Navbar />
           <Main>
-            <SearchBar />
+            {/* <SearchBar /> */}
             <Outlet />
           </Main>
         </SkeletonTheme>
