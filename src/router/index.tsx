@@ -7,9 +7,12 @@ import BasicLayout from '../layouts/BasicLayout'
 import Home from '../pages/Home'
 import Movies from '../pages/Movies'
 import Tvs from '../pages/Tvs'
-import Search from '../pages/Search'
+// import Search from '../pages/Search'
 import Detail from '../pages/Detail'
 import MoreCategory from '../pages/MoreCategory'
+
+// component
+import Error from '../components/UI/Error'
 
 // paths
 import { RouterPathMap } from '../constants/routerPathMap.constant'
@@ -58,9 +61,14 @@ const router = createBrowserRouter([
         path: RouterPathMap.TV_SERIES_DETAIL(':id'),
         element: <Detail type='TV' />,
       },
+      // {
+      //   path: RouterPathMap.SEARCH(),
+      //   element: <Search />,
+      // },
+
       {
-        path: RouterPathMap.SEARCH(),
-        element: <Search />,
+        path: '/*',
+        element: <Error />,
       },
     ],
   },

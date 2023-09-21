@@ -35,6 +35,7 @@ import VideoCard from '../../components/VideosSwiper/VideoCard'
 import StyledImage from '../../components/UI/StyledImage'
 import SkeletonContent from '../../components/UI/SkeletonContent'
 import SkeletonImage from '../../components/UI/SkeletonImage'
+import Error from '../../components/UI/Error'
 
 // assets
 import { ReactComponent as ImdbIcon } from '../../assets/icons/icon_imdb.svg'
@@ -95,7 +96,11 @@ const Detail = ({ type }: Props) => {
   const { id = '' } = useParams()
   const isTv = type === 'TV'
 
-  const { isLoading: isFetchingDetail, data: detailData } = useQuery(['detail', id], () => {
+  const {
+    isLoading: isFetchingDetail,
+    data: detailData,
+    error: detailError,
+  } = useQuery(['detail', id], () => {
     if (isTv) {
       return getTvSeriesDetailRequest(id)
     }
@@ -135,6 +140,10 @@ const Detail = ({ type }: Props) => {
   }
 
   const isPageLoading = isFetchingCasts || isFetchingVideos || isFetchingDetail || !detailData
+
+  if (detailError) {
+    return <Error />
+  }
 
   return (
     <Container>
