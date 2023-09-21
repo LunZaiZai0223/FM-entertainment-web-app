@@ -2,7 +2,8 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 // commons
-import { BodyTitle, BodyCaption, BodyAction } from '../../../styles/common'
+import { BodyTitle, BodyCaption, BodyAction, BodySubTitle } from '../../../styles/common'
+import { media } from '../../../styles/breakpoints'
 
 export const Header = styled.div`
   display: flex;
@@ -14,6 +15,10 @@ export const Header = styled.div`
 export const Title = styled.h2`
   ${BodyTitle};
   color: ${({ theme }) => theme.colors.white};
+
+  ${media.tablet} {
+    ${BodySubTitle};
+  }
 `
 
 export const CaptionWrapper = styled.div<{ isSecondary?: boolean }>`

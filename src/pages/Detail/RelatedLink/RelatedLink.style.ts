@@ -2,12 +2,17 @@ import styled from 'styled-components'
 
 // common
 import { DetailListItem } from '../../../styles/common'
+import { media } from '../../../styles/breakpoints'
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
   margin: 0 0 40px;
+
+  ${media.tablet} {
+    flex-wrap: wrap;
+  }
 `
 
 export const Item = styled.div`

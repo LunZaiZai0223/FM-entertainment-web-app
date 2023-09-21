@@ -2,7 +2,13 @@ import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
 // common
-import { BodySubTitle, BodySubTitleRegular, textOverflowEllipsis } from '../../../styles/common'
+import {
+  BodySubTitle,
+  BodySubTitleRegular,
+  DetailTagline,
+  textOverflowEllipsis,
+} from '../../../styles/common'
+import { media } from '../../../styles/breakpoints'
 
 export const Container = styled(motion.div)`
   width: 850px;
@@ -11,6 +17,10 @@ export const Container = styled(motion.div)`
   margin: 0 0 32px;
   border-radius: 6px;
   overflow: hidden;
+
+  ${media.tablet} {
+    width: 90%;
+  }
 `
 
 export const PlayerContainer = styled.div`
@@ -42,6 +52,11 @@ export const Content = styled.div`
 export const ContentHeader = styled.h3`
   ${BodySubTitle};
   margin: 16px 0 32px;
+
+  ${media.tablet} {
+    ${DetailTagline};
+    margin: 8px 0 16px;
+  }
 `
 
 export const List = styled.ul`
@@ -137,7 +152,7 @@ export const CollapseBtn = styled.button<{ isExpanded?: boolean }>`
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   width: 45px;
   height: 45px;
   border: 2px solid ;

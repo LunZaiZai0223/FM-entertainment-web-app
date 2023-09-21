@@ -14,7 +14,7 @@ import { ReactComponent as ErrorIcon } from '../../../assets/icons/icon_error.sv
 const Error = () => {
   const navigate = useNavigate()
   const handleClick = () => {
-    navigate({ pathname: RouterPathMap.HOME() })
+    navigate({ pathname: RouterPathMap.HOME() }, { replace: true })
   }
 
   return (
