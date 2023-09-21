@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { ReactComponent as ArrowLeft } from '../../assets/icons/icon_arrow_left.svg'
 import { ReactComponent as ArrowRight } from '../../assets/icons/icon_arrow_right.svg'
 
+import { media } from '../../styles/breakpoints'
+
 export const ArrowLeftIcon = styled(ArrowLeft)``
 export const ArrowRightIcon = styled(ArrowRight)``
 
@@ -25,6 +27,16 @@ export const SlideController = styled.button<{ isLeft: boolean }>`
         fill: white;
       }
       transform: scale(1.2);
+    }
+  }
+
+  ${media.phone} {
+    display: block;
+    width: 8%;
+    background-color: hsla(0, 0%, 8%, 0.5);
+    svg {
+      width: 20px;
+      height: 20px;
     }
   }
 `

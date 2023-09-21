@@ -5,6 +5,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
 
+// hooks
+import useWindowDimensions from '../../hooks/useWindowDimensions'
+
 // styles
 import {
   ArrowLeftIcon,
@@ -21,10 +24,14 @@ interface Props<T> {
 }
 
 const VideosSwiper = <T,>({ list, renderer }: Props<T>) => {
+  const { width: windowWidth } = useWindowDimensions()
   const swiperRef = useRef<SwiperType>()
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const paginationLength = Math.ceil(list.length / 3)
+  const shouldUseSmallVersion = windowWidth <= 768
+  const paginationShouldBeDividedBy = shouldUseSmallVersion ? 2 : 3
+
+  const paginationLength = Math.ceil(list.length / paginationShouldBeDividedBy)
   const shouldDisplayPrevController = currentIndex > 0
   const shouldDisplayNextController = currentIndex < paginationLength - 1
 
@@ -50,7 +57,7 @@ const VideosSwiper = <T,>({ list, renderer }: Props<T>) => {
     } else if (swiper.isEnd) {
       setCurrentIndex(paginationLength - 1)
     } else {
-      setCurrentIndex(Math.floor(swiper.realIndex / 3))
+      setCurrentIndex(Math.floor(swiper.realIndex / paginationShouldBeDividedBy))
     }
   }
 
@@ -69,17 +76,25 @@ const VideosSwiper = <T,>({ list, renderer }: Props<T>) => {
         </SlideController>
       )}
       <Swiper
-        centeredSlides
         centeredSlidesBounds
-        slidesPerView={3}
-        slidesPerGroup={3}
-        spaceBetween={16}
-        allowTouchMove={false}
+        slidesPerView={2}
+        slidesPerGroup={2}
+        spaceBetween={8}
+        allowTouchMove={true}
         style={{
           width: '100%',
         }}
         onBeforeInit={handleInitSwiper}
         onSlideChange={handleSlideChange}
+        breakpoints={{
+          768: {
+            centeredSlides: true,
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            spaceBetween: 16,
+            allowTouchMove: false,
+          },
+        }}
       >
         {list.map((item, index) => {
           return (

@@ -45,7 +45,7 @@ export const Nav = styled.nav`
     padding: 20px;
     margin: 24px;
     top: 0;
-    z-index: 50;
+    z-index: 2;
   }
 `
 
@@ -59,6 +59,10 @@ export const NavList = styled.ul`
     flex-direction: row;
     width: 40%;
     justify-content: space-between;
+  }
+
+  ${media.phone} {
+    width: auto;
   }
 `
 
