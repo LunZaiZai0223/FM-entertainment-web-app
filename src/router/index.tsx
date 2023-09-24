@@ -1,15 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { lazy } from 'react'
 
 // layouts
 import BasicLayout from '../layouts/BasicLayout'
 
 // pages
-import Home from '../pages/Home'
-import Movies from '../pages/Movies'
-import Tvs from '../pages/Tvs'
-// import Search from '../pages/Search'
-import Detail from '../pages/Detail'
-import MoreCategory from '../pages/MoreCategory'
+const Home = lazy(() => import('../pages/Home/index'))
+const Tvs = lazy(() => import('../pages/Tvs'))
+const Movies = lazy(() => import('../pages/Movies'))
+const Detail = lazy(() => import('../pages/Detail'))
+const MoreCategory = lazy(() => import('../pages/MoreCategory'))
 
 // component
 import Error from '../components/UI/Error'
