@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom'
+import { Suspense } from 'react'
 
 // libs
 import { ThemeProvider } from 'styled-components'
@@ -9,6 +10,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import Navbar from '../../components/Navbar'
 // import SearchBar from '../../components/SearchBar'
 import ScrollToTop from '../../components/UI/ScrollToTop'
+import TopProgressBar from '../../components/TopProgressBar'
 
 // styles
 import theme from '../../styles/theme'
@@ -32,11 +34,13 @@ const BasicLayout = () => {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <SkeletonTheme baseColor='#202020' highlightColor='#444'>
-          <Navbar />
-          <Main>
-            {/* <SearchBar /> */}
-            <Outlet />
-          </Main>
+          <Suspense fallback={<TopProgressBar />}>
+            <Navbar />
+            <Main>
+              {/* <SearchBar /> */}
+              <Outlet />
+            </Main>
+          </Suspense>
         </SkeletonTheme>
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />

@@ -13,7 +13,7 @@ An entertainment web app built with React, TypeScript and styled-component that 
 
 ## TODO:
 
-- [ ] Router setting (lazy, error handling, suspense...)
+- [x] Router setting (lazy, error handling, suspense...)
 - [ ] Search page
 - [ ] Personal page(e.g. favorite with chart...)
 - [ ] Account (e.g. with google)
