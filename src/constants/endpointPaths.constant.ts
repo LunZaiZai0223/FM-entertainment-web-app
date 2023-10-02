@@ -17,6 +17,7 @@ export const MovieEndpointPath = {
   TopRated: '/movie/top_rated',
   Genre: '/genre/movie/list?language=en',
   ListWithGenre: '/discover/movie',
+  Search: '/search/movie',
 }
 
 export const TvEndpointPath = {
@@ -38,6 +39,11 @@ export const TvEndpointPath = {
   TopRated: '/tv/top_rated',
   Genre: '/genre/tv/list?language=en',
   ListWithGenre: '/discover/tv',
+  Search: '/search/tv',
+}
+
+export const Others = {
+  Multi: '/search/multi',
 }
 
 export const TmdbImageEndpoint = 'https://image.tmdb.org/t/p/original'
