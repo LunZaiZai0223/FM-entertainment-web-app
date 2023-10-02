@@ -1,6 +1,9 @@
 // theme
 import theme from '../../../styles/theme'
 
+// constants
+import { MEDIA_TYPE } from '../../../constants/mediaTypes.constants'
+
 // styles
 import {
   Container,
@@ -31,7 +34,7 @@ const OverviewInfo = ({
         <SubInfoText>{releaseYear.split('-')[0]}</SubInfoText>
         <SubInfoText>·</SubInfoText>
         <SubInfoMovieIcon defaultcolor={theme.colors.white} />
-        <SubInfoText>{type === 'Movie' ? 'Movie' : 'TV Series'}</SubInfoText>
+        <SubInfoText>{type === MEDIA_TYPE.MOVIE ? 'Movie' : 'TV Series'}</SubInfoText>
       </SubInfoContainer>
       <InfoTitle isMain={isMain}>{title}</InfoTitle>
     </Container>

@@ -21,8 +21,10 @@ export interface DbItem {
   poster_path: string
   /** 上映日期 */
   release_date: string
+  first_air_date: string
   /** 標題 */
   title: string
+  name: string
   /** 是否有影片 */
   video: boolean
   /** 平均評分 */

@@ -8,7 +8,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 
 // components
 import Navbar from '../../components/Navbar'
-// import SearchBar from '../../components/SearchBar'
+import SearchBar from '../../components/SearchBar'
 import ScrollToTop from '../../components/UI/ScrollToTop'
 import TopProgressBar from '../../components/TopProgressBar'
 
@@ -37,7 +37,7 @@ const BasicLayout = () => {
           <Suspense fallback={<TopProgressBar />}>
             <Navbar />
             <Main>
-              {/* <SearchBar /> */}
+              <SearchBar />
               <Outlet />
             </Main>
           </Suspense>

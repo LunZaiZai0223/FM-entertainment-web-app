@@ -107,3 +107,13 @@ export const DetailListItem = BasicTypography({
   fontWeight: 500,
   lineHeight: 1.25,
 })
+export const CommonTitle = BasicTypography({
+  fontSize: '32px',
+  fontWeight: 300,
+  lineHeight: '1.75rem',
+})
+export const CardSubInfo = BasicTypography({
+  fontSize: '13px',
+  fontWeight: 300,
+  lineHeight: 1,
+})

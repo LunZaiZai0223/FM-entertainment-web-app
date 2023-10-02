@@ -9,6 +9,7 @@ import StyledImage from '../UI/StyledImage'
 // constants
 import { TmdbImageEndpoint } from '../../constants/endpointPaths.constant'
 import { RouterPathMap } from '../../constants/routerPathMap.constant'
+import { MEDIA_TYPE } from '../../constants/mediaTypes.constants'
 
 // styles
 import { Container, ItemWrapper, Item } from './HorizontalScrollList.style'
@@ -32,11 +33,11 @@ const HorizontalScrollList = ({ list, sectionTitle, sectionCaption }: Props) => 
 
   const handleClickItem = (id: number, type: string) => () => {
     switch (type) {
-      case 'MOVIE':
+      case MEDIA_TYPE.MOVIE:
         navigate(RouterPathMap.MOVIE_DETAIL(id.toString()))
         break
 
-      case 'TV':
+      case MEDIA_TYPE.TV_SERIES:
         navigate(RouterPathMap.TV_SERIES_DETAIL(id.toString()))
         break
 

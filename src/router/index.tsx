@@ -5,11 +5,12 @@ import { lazy } from 'react'
 import BasicLayout from '../layouts/BasicLayout'
 
 // pages
-const Home = lazy(() => import('../pages/Home/index'))
+const Home = lazy(() => import('../pages/Home'))
 const Tvs = lazy(() => import('../pages/Tvs'))
 const Movies = lazy(() => import('../pages/Movies'))
 const Detail = lazy(() => import('../pages/Detail'))
 const MoreCategory = lazy(() => import('../pages/MoreCategory'))
+const Search = lazy(() => import('../pages/Search'))
 
 // component
 import Error from '../components/UI/Error'
@@ -61,11 +62,10 @@ const router = createBrowserRouter([
         path: RouterPathMap.TV_SERIES_DETAIL(':id'),
         element: <Detail type='TV' />,
       },
-      // {
-      //   path: RouterPathMap.SEARCH(),
-      //   element: <Search />,
-      // },
-
+      {
+        path: RouterPathMap.SEARCH(),
+        element: <Search />,
+      },
       {
         path: '/*',
         element: <Error />,

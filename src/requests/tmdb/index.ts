@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // endpoint paths
-import { MovieEndpointPath, TvEndpointPath } from '../../constants/endpointPaths.constant'
+import { MovieEndpointPath, Others, TvEndpointPath } from '../../constants/endpointPaths.constant'
 
 // interfaces
 import { ListResultModel } from '../../interfaces/commom.model'
@@ -11,6 +11,7 @@ import { GenreModel } from '../../interfaces/genre.model'
 import { Detail } from '../../interfaces/detail.model'
 import { CastModel } from '../../interfaces/cast.model'
 import { Trailer } from '../../interfaces/trailer.model'
+import { DbItem } from '../../interfaces/dbItem.model'
 
 // environment variables
 const { REACT_APP_BASE_TMDB_ENDPOINT, REACT_APP_TMDB_ACCESS_TOKEN } = process.env
@@ -166,4 +167,38 @@ export const getTvSeriesWithGenreRequest = async (params: {
   >(TvEndpointPath.ListWithGenre, { params })
 
   return moviesWithGenreResponse.data
+}
+
+export const getMoviesBySearch = async (params: { page: number; query: string }) => {
+  const moviesBySearchResponse = await mainTmdbAxios.get<
+    ListResultModel<MovieItemByCategoryModel[]>
+  >(MovieEndpointPath.Search, {
+    params: {
+      ...params,
+    },
+  })
+
+  return moviesBySearchResponse.data
+}
+
+export const getTvSeriesBySearch = async (params: { page: number; query: string }) => {
+  const tvSeriesBySearchResponse = await mainTmdbAxios.get<
+    ListResultModel<TvSeriesItemByCategoryModel[]>
+  >(TvEndpointPath.Search, {
+    params: {
+      ...params,
+    },
+  })
+
+  return tvSeriesBySearchResponse.data
+}
+
+export const getMultiBySearch = async (params: { page: number; query: string }) => {
+  const multiBySearchResponse = await mainTmdbAxios.get<ListResultModel<DbItem[]>>(Others.Multi, {
+    params: {
+      ...params,
+    },
+  })
+
+  return multiBySearchResponse.data
 }
