@@ -32,10 +32,11 @@ import { TvSeriesItemByCategoryModel } from '../../interfaces/tvSeriesItemByCate
 
 // constants
 import { RouterPathMap } from '../../constants/routerPathMap.constant'
+import { MEDIA_TYPE } from '../../constants/mediaTypes.constants'
 
 interface CategoryDataWithTitleAndCaption {
   title: string
-  caption: 'MOVIE' | 'TV'
+  caption: string
   dataList: MovieItemByCategoryModel[] | TvSeriesItemByCategoryModel[]
   goToMorePath: string
 }
@@ -44,22 +45,22 @@ interface CategoryDataWithTitleAndCaption {
 const moviesTitleAndCaptions = [
   {
     title: 'Popular',
-    caption: 'MOVIE' as 'MOVIE' | 'TV',
+    caption: MEDIA_TYPE.MOVIE,
     goToMorePath: RouterPathMap.POPULAR_MOVIES(),
   },
   {
     title: 'Now Playing',
-    caption: 'MOVIE' as 'MOVIE' | 'TV',
+    caption: MEDIA_TYPE.MOVIE,
     goToMorePath: RouterPathMap.NOW_PLAYING_MOVIES(),
   },
   {
     title: 'Upcoming',
-    caption: 'MOVIE' as 'MOVIE' | 'TV',
+    caption: MEDIA_TYPE.MOVIE,
     goToMorePath: RouterPathMap.UPCOMING_MOVIES(),
   },
   {
     title: 'Top Rated',
-    caption: 'MOVIE' as 'MOVIE' | 'TV',
+    caption: MEDIA_TYPE.MOVIE,
     goToMorePath: RouterPathMap.TOP_RATED_MOVIES(),
   },
 ]
@@ -67,22 +68,22 @@ const moviesTitleAndCaptions = [
 const tvSeriesTitleAndCaptions = [
   {
     title: 'Popular',
-    caption: 'TV' as 'MOVIE' | 'TV',
+    caption: MEDIA_TYPE.TV_SERIES,
     goToMorePath: RouterPathMap.POPULAR_TVS(),
   },
   {
     title: 'Airing Today',
-    caption: 'TV' as 'MOVIE' | 'TV',
+    caption: MEDIA_TYPE.TV_SERIES,
     goToMorePath: RouterPathMap.AIRING_TODAY_TVS(),
   },
   {
     title: 'On Air',
-    caption: 'TV' as 'MOVIE' | 'TV',
+    caption: MEDIA_TYPE.TV_SERIES,
     goToMorePath: RouterPathMap.ON_AIR_TVS(),
   },
   {
     title: 'Top Rated',
-    caption: 'TV' as 'MOVIE' | 'TV',
+    caption: MEDIA_TYPE.TV_SERIES,
     goToMorePath: RouterPathMap.TOP_RATED_TVS(),
   },
 ]

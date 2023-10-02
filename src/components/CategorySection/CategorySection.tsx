@@ -9,6 +9,7 @@ import StyledImage from '../UI/StyledImage'
 // constants
 import { TmdbImageEndpoint } from '../../constants/endpointPaths.constant'
 import { RouterPathMap } from '../../constants/routerPathMap.constant'
+import { MEDIA_TYPE } from '../../constants/mediaTypes.constants'
 
 // interfaces
 import { MovieItemByCategoryModel } from '../../interfaces/movieItemByCategory.model'
@@ -27,13 +28,13 @@ interface Props {
 
 const formatCaption = (inputCaption: string) => {
   switch (inputCaption) {
-    case 'MOVIE':
+    case MEDIA_TYPE.MOVIE:
       return {
         header: 'MOVIE',
         overviewType: 'Movie',
       }
 
-    case 'TV':
+    case MEDIA_TYPE.TV_SERIES:
       return {
         header: 'TV SERIES',
         overviewType: 'TV Series',
@@ -52,11 +53,11 @@ const CategorySection = ({ title, caption, dataList, goToMorePath, shouldCardLar
   const currentCaptionGroup = formatCaption(caption)
   const handleClickItem = (id: number, type: string) => () => {
     switch (type) {
-      case 'MOVIE':
+      case MEDIA_TYPE.MOVIE:
         navigate({ pathname: `${RouterPathMap.MOVIE_DETAIL(id.toString())}` })
         break
 
-      case 'TV':
+      case MEDIA_TYPE.TV_SERIES:
         navigate({ pathname: `${RouterPathMap.TV_SERIES_DETAIL(id.toString())}` })
         break
 
@@ -80,7 +81,7 @@ const CategorySection = ({ title, caption, dataList, goToMorePath, shouldCardLar
             <Item
               key={item.id}
               shouldBeLarge={shouldCardLarge ? index >= self.length - 2 : false}
-              onClick={handleClickItem(item.id, isTv ? 'TV' : 'MOVIE')}
+              onClick={handleClickItem(item.id, isTv ? MEDIA_TYPE.TV_SERIES : MEDIA_TYPE.MOVIE)}
             >
               <ImageWrapper>
                 <StyledImage
