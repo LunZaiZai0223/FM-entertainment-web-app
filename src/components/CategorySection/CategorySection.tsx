@@ -31,13 +31,13 @@ const formatCaption = (inputCaption: string) => {
     case MEDIA_TYPE.MOVIE:
       return {
         header: 'MOVIE',
-        overviewType: 'Movie',
+        overviewType: MEDIA_TYPE.MOVIE,
       }
 
     case MEDIA_TYPE.TV_SERIES:
       return {
         header: 'TV SERIES',
-        overviewType: 'TV Series',
+        overviewType: MEDIA_TYPE.TV_SERIES,
       }
 
     default:

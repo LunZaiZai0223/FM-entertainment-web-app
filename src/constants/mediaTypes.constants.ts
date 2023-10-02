@@ -10,7 +10,7 @@ export const MEDIA_TYPE = {
 
 export const MEDIA_TYPE_TITLE = {
   MOVIE: 'Movie',
-  TV_SERIES: 'TV series',
+  TV_SERIES: 'TV Series',
 }
 
 export type MediaTypeTitle = 'MOVIE' | 'TV_SERIES'
