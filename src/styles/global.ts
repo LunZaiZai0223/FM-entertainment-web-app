@@ -92,6 +92,21 @@ const GlobalStyles = createGlobalStyle`
       scroll-behavior: auto !important;
     }
   }
+
+  // 使用 createPortal 時，想要設定 html 註冊的根部元素時需要進來 createGlobalStyle 同步設定
+  #toasts-portal {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    
+    > div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 30px;
+    }
+  }
 `
 
 export default GlobalStyles

@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom'
 // libs
 import { useQuery } from 'react-query'
 
+// hooks
+import useToastContext from '../../components/UI/Toast/useToastContext'
+
 // apis
 import {
   getMovieDetailRequest,
@@ -31,6 +34,7 @@ import Synopsis from './Synopsis'
 import RelatedVideos from './RelatedVideos'
 import RelatedLink from './RelatedLink'
 import VideoModal from './VideoModal'
+import ActionList from './ActionList'
 import VideoCard from '../../components/VideosSwiper/VideoCard'
 import StyledImage from '../../components/UI/StyledImage'
 import SkeletonContent from '../../components/UI/SkeletonContent'
@@ -40,6 +44,8 @@ import Error from '../../components/UI/Error'
 // assets
 import { ReactComponent as ImdbIcon } from '../../assets/icons/icon_imdb.svg'
 import { ReactComponent as LinkIcon } from '../../assets/icons/icon_link.svg'
+import { ReactComponent as ShareIcon } from '../../assets/icons/icon_share.svg'
+import { ReactComponent as FavoriteIcon } from '../../assets/icons/icon_favoriate.svg'
 
 // styles
 import {
@@ -49,6 +55,8 @@ import {
   ImageWrapper,
   Title,
   Tagline,
+  TitleContainer,
+  ToastContent,
 } from './Detail.style'
 
 interface Props {
@@ -90,6 +98,7 @@ const formatRelatedLinks = (source: {
 }
 
 const Detail = ({ type }: Props) => {
+  const { addToast } = useToastContext()
   const [videoModalIsActivated, setVideoModalIsActivated] = useState(false)
   const [currentSelectedVideoIndex, setCurrentSelectedVideoIndex] = useState(-1)
   const [scrollPositionY, setScrollPositionY] = useState(0)
@@ -139,6 +148,16 @@ const Detail = ({ type }: Props) => {
     window.scrollTo({ top: scrollPositionY })
   }
 
+  const actionListData = [
+    {
+      item: <ShareIcon />,
+      handler: () => {
+        navigator.clipboard.writeText(window.location.href)
+        addToast(<ToastContent>Copy successfully!</ToastContent>)
+      },
+    },
+    { item: <FavoriteIcon />, handler: () => console.log('收藏') },
+  ]
   const isPageLoading = isFetchingCasts || isFetchingVideos || isFetchingDetail || !detailData
 
   if (detailError) {
@@ -163,7 +182,10 @@ const Detail = ({ type }: Props) => {
         {isPageLoading && <SkeletonContent />}
         {!isPageLoading && (
           <>
-            <Title>{isTv ? detailData?.name : detailData?.title}</Title>
+            <TitleContainer>
+              <Title>{isTv ? detailData?.name : detailData?.title}</Title>
+              <ActionList list={actionListData} />
+            </TitleContainer>
             <Tagline>{detailData?.tagline}</Tagline>
             <DetailRating rating={detailData?.vote_average || 0} />
             <SubInfoContainer>

@@ -40,6 +40,29 @@ import { ReactComponent as TvIcon } from '../../assets/icons/icon_nav_tv.svg'
 // hooks
 import useOnScreen from '../../hooks/useOnScreen'
 
+const renderCard = ({ img, title, type, date = '' }: CardBody) => {
+  return (
+    <Card>
+      <ImageContainer>
+        {img ? (
+          <>
+            <img src={`${TmdbImageEndpoint}${img}`} />
+          </>
+        ) : (
+          <Skeleton />
+        )}
+      </ImageContainer>
+      <SubInfoContainer>
+        <SubInfoText>{date.split('-')[0] || 'N/A'}</SubInfoText>
+        <SubInfoText>·</SubInfoText>
+        {type === MEDIA_TYPE.MOVIE ? <MovieIcon /> : <TvIcon />}
+        <SubInfoText>{MEDIA_TYPE_TITLE[type as MediaTypeTitle]}</SubInfoText>
+      </SubInfoContainer>
+      <InfoTitle>{title}</InfoTitle>
+    </Card>
+  )
+}
+
 interface CardBody {
   title: string
   type: string
@@ -122,29 +145,6 @@ const Search = () => {
       .map((item) => item.results)
       .flat()
       .map(formatList) ?? []
-
-  const renderCard = ({ img, title, type, date = '' }: CardBody) => {
-    return (
-      <Card>
-        <ImageContainer>
-          {img ? (
-            <>
-              <img src={`${TmdbImageEndpoint}${img}`} />
-            </>
-          ) : (
-            <Skeleton />
-          )}
-        </ImageContainer>
-        <SubInfoContainer>
-          <SubInfoText>{date.split('-')[0] || 'N/A'}</SubInfoText>
-          <SubInfoText>·</SubInfoText>
-          {type === MEDIA_TYPE.MOVIE ? <MovieIcon /> : <TvIcon />}
-          <SubInfoText>{MEDIA_TYPE_TITLE[type as MediaTypeTitle]}</SubInfoText>
-        </SubInfoContainer>
-        <InfoTitle>{title}</InfoTitle>
-      </Card>
-    )
-  }
 
   useEffect(() => {
     if (!hasNextPage) return

@@ -25,6 +25,7 @@ const theme = {
     deepGray: '#333',
     scaleGray: '#777',
     semiTransparentDarkGray: 'rgba(42, 42, 42, 0.6)',
+    deepTurquoiseAlpha60: 'rgba(13, 136, 164, 0.6)',
     steelBlue: '#5A6A90',
     tealBlue: '#0D7490',
     emeraldGreen: '#11766E',
