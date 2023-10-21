@@ -15,4 +15,7 @@ export enum RouterPathNameEnum {
   ON_AIR_TVS = '/tvs/on-air',
   TOP_RATED_TVS = '/tvs/top-rated',
   GENRE_TVS = '/tvs/genre',
+  MY = '/my',
+  MY_FAVORITE = '/my/favorite',
+  MY_BASIC_SETTINGS = '/my/basic-settings',
 }
