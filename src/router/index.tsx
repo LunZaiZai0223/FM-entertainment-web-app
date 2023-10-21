@@ -11,9 +11,12 @@ const Movies = lazy(() => import('../pages/Movies'))
 const Detail = lazy(() => import('../pages/Detail'))
 const MoreCategory = lazy(() => import('../pages/MoreCategory'))
 const Search = lazy(() => import('../pages/Search'))
+const My = lazy(() => import('../pages/My'))
 
 // component
 import Error from '../components/UI/Error'
+import Favorite from '../pages/My/Favorite'
+import BasicSetting from '../pages/My/BasicSetting'
 
 // paths
 import { RouterPathMap } from '../constants/routerPathMap.constant'
@@ -65,6 +68,20 @@ const router = createBrowserRouter([
       {
         path: RouterPathMap.SEARCH(),
         element: <Search />,
+      },
+      {
+        path: RouterPathMap.My(),
+        element: <My />,
+        children: [
+          {
+            index: true,
+            element: <Favorite />,
+          },
+          {
+            path: RouterPathMap.MY_BASIC_SETTINGS(),
+            element: <BasicSetting />,
+          },
+        ],
       },
       {
         path: '/*',
