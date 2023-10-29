@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 // common
 import { StyledSvgProps, svgStyle } from '../../styles/common'
+import { media } from '../../styles/breakpoints'
 
 // assets
 import { ReactComponent as SearchIcon } from '../../assets/icons/icon_search.svg'
@@ -16,6 +17,10 @@ export const Controller = styled.div`
   display: flex;
   gap: 16px;
   align-items: center;
+
+  ${media.phone} {
+    flex-wrap: wrap;
+  }
 `
 
 export const StyledSearchIcon = styled(SearchIcon).attrs({})<StyledSvgProps>`
