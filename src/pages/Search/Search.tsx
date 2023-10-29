@@ -11,64 +11,26 @@ import { DbItem } from '../../interfaces/dbItem.model'
 import { MovieItemByCategoryModel } from '../../interfaces/movieItemByCategory.model'
 import { TvSeriesItemByCategoryModel } from '../../interfaces/tvSeriesItemByCategory.model'
 
-// components
-import Skeleton from 'react-loading-skeleton'
 import Loader from '../../components/Loader'
 import Error from '../../components/UI/Error'
+import MediaCard from '../../components/UI/MediaCard'
 
 // constants
-import { TmdbImageEndpoint } from '../../constants/endpointPaths.constant'
 import { RouterPathMap } from '../../constants/routerPathMap.constant'
-import { MEDIA_TYPE, MEDIA_TYPE_TITLE, MediaTypeTitle } from '../../constants/mediaTypes.constants'
+import { MEDIA_TYPE } from '../../constants/mediaTypes.constants'
 
 // styles
-import {
-  Card,
-  ImageContainer,
-  Item,
-  List,
-  SubInfoContainer,
-  SubInfoText,
-  InfoTitle,
-  Title,
-} from './Search.style'
-
-// assets
-import { ReactComponent as MovieIcon } from '../../assets/icons/icon_nav_movies.svg'
-import { ReactComponent as TvIcon } from '../../assets/icons/icon_nav_tv.svg'
+import { Item, List, Title } from './Search.style'
 
 // hooks
 import useOnScreen from '../../hooks/useOnScreen'
 
-const renderCard = ({ img, title, type, date = '' }: CardBody) => {
-  return (
-    <Card>
-      <ImageContainer>
-        {img ? (
-          <>
-            <img src={`${TmdbImageEndpoint}${img}`} />
-          </>
-        ) : (
-          <Skeleton />
-        )}
-      </ImageContainer>
-      <SubInfoContainer>
-        <SubInfoText>{date.split('-')[0] || 'N/A'}</SubInfoText>
-        <SubInfoText>·</SubInfoText>
-        {type === MEDIA_TYPE.MOVIE ? <MovieIcon /> : <TvIcon />}
-        <SubInfoText>{MEDIA_TYPE_TITLE[type as MediaTypeTitle]}</SubInfoText>
-      </SubInfoContainer>
-      <InfoTitle>{title}</InfoTitle>
-    </Card>
-  )
-}
-
 interface CardBody {
   title: string
   type: string
-  date: string
+  date?: string
   id: number
-  img: string | null
+  img?: string
 }
 
 const formatList = (item: DbItem | MovieItemByCategoryModel | TvSeriesItemByCategoryModel) => {
@@ -173,13 +135,18 @@ const Search = () => {
           if (index === formattedList.length - 1) {
             return (
               <Item key={item.id + index} onClick={() => handleClickItem(item)} ref={observedRef}>
-                {renderCard(item)}
+                <MediaCard
+                  mediaType={item.type}
+                  title={item.title}
+                  img={item.img}
+                  date={item.date}
+                />
               </Item>
             )
           }
           return (
             <Item key={item.id} onClick={() => handleClickItem(item)}>
-              {renderCard(item)}
+              <MediaCard mediaType={item.type} title={item.title} img={item.img} date={item.date} />
             </Item>
           )
         })}
