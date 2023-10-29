@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useMemo } from 'react'
 
 export interface IToast {
   id: string
@@ -19,10 +19,7 @@ export const ToastContext = createContext<IToastContextValue | null>(null)
 
 const ToastProvider = ({ children }: ToastProviderProps) => {
   const [toasts, setToasts] = useState<IToast[]>([])
-  const contextValue: IToastContextValue = {
-    toasts,
-    setToasts,
-  }
+  const contextValue = useMemo(() => ({ toasts, setToasts }), [toasts])
 
   return <ToastContext.Provider value={contextValue}>{children}</ToastContext.Provider>
 }
