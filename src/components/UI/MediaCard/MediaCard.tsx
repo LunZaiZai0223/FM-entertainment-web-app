@@ -29,7 +29,7 @@ const MediaCard = ({ img, date, mediaType, title }: Props) => {
       <ImageContainer>
         {img ? (
           <>
-            <img src={`${TmdbImageEndpoint}${img}`} />
+            <img src={`${TmdbImageEndpoint}${img}`} loading='lazy' decoding='async' />
           </>
         ) : (
           <Skeleton />
