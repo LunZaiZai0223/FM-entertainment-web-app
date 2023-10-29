@@ -37,7 +37,7 @@ const formatList = (item: DbItem | MovieItemByCategoryModel | TvSeriesItemByCate
   if ('media_type' in item) {
     return {
       title: item.title || item.name,
-      type: item.media_type === MEDIA_TYPE.MOVIE ? MEDIA_TYPE.MOVIE : MEDIA_TYPE.TV_SERIES,
+      type: item.media_type === 'movie' ? MEDIA_TYPE.MOVIE : MEDIA_TYPE.TV_SERIES,
       date: item.release_date || item.first_air_date,
       img: item.backdrop_path || item.poster_path,
       id: item.id,

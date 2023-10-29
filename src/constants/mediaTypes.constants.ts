@@ -9,8 +9,11 @@ export const MEDIA_TYPE = {
 }
 
 export const MEDIA_TYPE_TITLE = {
-  MOVIE: 'Movie',
-  TV_SERIES: 'TV Series',
+  [MEDIA_TYPE.MOVIE]: 'Movie',
+  [MEDIA_TYPE.TV_SERIES]: 'TV Series',
 }
 
-export type MediaTypeTitle = 'MOVIE' | 'TV_SERIES'
+export type MediaTypeTitle =
+  | typeof MEDIA_TYPE.MOVIE
+  | typeof MEDIA_TYPE.TV_SERIES
+  | typeof MEDIA_TYPE.MULTI
