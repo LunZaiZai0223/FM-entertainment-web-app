@@ -9,7 +9,7 @@ import StyledImage from '../UI/StyledImage'
 // constants
 import { TmdbImageEndpoint } from '../../constants/endpointPaths.constant'
 import { RouterPathMap } from '../../constants/routerPathMap.constant'
-import { MEDIA_TYPE } from '../../constants/mediaTypes.constants'
+import { MEDIA_TYPE, MediaTypeTitle } from '../../constants/mediaTypes.constants'
 
 // styles
 import { Container, ItemWrapper, Item } from './HorizontalScrollList.style'
@@ -18,7 +18,7 @@ export interface HorizontalItem {
   title: string
   releaseYear: string
   imgSrc: string
-  type: 'MOVIE' | 'TV'
+  type: MediaTypeTitle
   id: number
 }
 

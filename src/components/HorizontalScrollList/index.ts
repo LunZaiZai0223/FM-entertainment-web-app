@@ -5,6 +5,7 @@ import { MovieItemByCategoryModel } from '../../interfaces/movieItemByCategory.m
 // constants
 import { TmdbImageEndpoint } from '../../constants/endpointPaths.constant'
 import { TvSeriesItemByCategoryModel } from '../../interfaces/tvSeriesItemByCategory.model'
+import { MEDIA_TYPE } from '../../constants/mediaTypes.constants'
 
 export const formatPropsToHorizontalProp = (
   movies: MovieItemByCategoryModel[] | TvSeriesItemByCategoryModel[],
@@ -17,7 +18,7 @@ export const formatPropsToHorizontalProp = (
       title,
       releaseYear: releaseYear.split('-')[0],
       imgSrc: `${TmdbImageEndpoint}${item.backdrop_path || item.poster_path}`,
-      type: isTv ? 'TV' : 'MOVIE',
+      type: isTv ? MEDIA_TYPE.TV_SERIES : MEDIA_TYPE.MOVIE,
       id: item.id,
     }
   })
