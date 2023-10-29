@@ -2,7 +2,7 @@ export interface MovieItemByCategoryModel {
   /** 是否為成人 */
   adult: boolean
   /** 背景圖片路徑 */
-  backdrop_path: string | null
+  backdrop_path?: string
   /** 電影類型的ID列表 */
   genre_ids: number[]
   /** 電影ID */
@@ -16,7 +16,7 @@ export interface MovieItemByCategoryModel {
   /** 流行度 */
   popularity: number
   /** 海報圖片路徑 */
-  poster_path: string | null
+  poster_path?: string
   /** 上映日期 */
   release_date: string
   /** 電影標題 */
