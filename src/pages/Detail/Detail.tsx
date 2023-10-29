@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -6,6 +7,9 @@ import { useQuery } from 'react-query'
 
 // hooks
 import useToastContext from '../../components/UI/Toast/useToastContext'
+
+// utils
+import LocalStorageHelper from '../../utils/localStorageHelper'
 
 // apis
 import {
@@ -19,6 +23,7 @@ import {
 
 // interface
 import { Trailer } from '../../interfaces/trailer.model'
+import { MediaInfo } from '../../interfaces/mediaInfo.model'
 
 // constants
 import { TmdbImageEndpoint, ImdbBaseUrl } from '../../constants/endpointPaths.constant'
@@ -46,6 +51,7 @@ import { ReactComponent as ImdbIcon } from '../../assets/icons/icon_imdb.svg'
 import { ReactComponent as LinkIcon } from '../../assets/icons/icon_link.svg'
 import { ReactComponent as ShareIcon } from '../../assets/icons/icon_share.svg'
 import { ReactComponent as FavoriteIcon } from '../../assets/icons/icon_favoriate.svg'
+import { ReactComponent as FavoriteFullIcon } from '../../assets/icons/icon_favoriate_full.svg'
 
 // styles
 import {
@@ -129,7 +135,13 @@ const Detail = ({ type }: Props) => {
     return getMovieVideosRequest(id)
   })
 
-  const videos = videosData?.results.filter((item) => item.site === 'YouTube') ?? []
+  const youtubeVideos = videosData?.results.filter((item) => item.site === 'YouTube') ?? []
+  const currentLocalStorageKey = isTv ? 'MY_FAVORITE_TV_SERIES' : 'MY_FAVORITE_MOVIES'
+  const currentFavorites: MediaInfo[] | null =
+    LocalStorageHelper.getLocalStorageItemByKey(currentLocalStorageKey)
+  const isDetailInMyFavorite = (() => {
+    return currentFavorites ? currentFavorites.some((item) => item.id === detailData?.id) : false
+  })()
 
   const handleVideoClick = (
     targetYoutube: Trailer,
@@ -148,15 +160,52 @@ const Detail = ({ type }: Props) => {
     window.scrollTo({ top: scrollPositionY })
   }
 
+  const formatNewFavoriteItem = () => {
+    const { id, backdrop_path, poster_path, first_air_date, release_date, name, title, genres } =
+      detailData ?? {}
+
+    return {
+      id,
+      genres,
+      img: backdrop_path || poster_path,
+      date: first_air_date || release_date,
+      mediaType: isTv ? 'TV_SERIES' : 'MOVIE',
+      title: name || title,
+    }
+  }
+
+  const getRemovedCurrentFavoriteItemList = () => {
+    const { id } = detailData ?? {}
+
+    if (currentFavorites) {
+      return currentFavorites.filter((favorite) => favorite.id !== id)
+    }
+    return []
+  }
+
   const actionListData = [
     {
       item: <ShareIcon />,
       handler: () => {
         navigator.clipboard.writeText(window.location.href)
-        addToast(<ToastContent>Copy successfully!</ToastContent>)
+        addToast(<ToastContent>Copy Successfully!</ToastContent>)
       },
     },
-    { item: <FavoriteIcon />, handler: () => console.log('收藏') },
+    {
+      item: isDetailInMyFavorite ? <FavoriteFullIcon /> : <FavoriteIcon />,
+      handler: () => {
+        const updatedFavoriteList = isDetailInMyFavorite
+          ? getRemovedCurrentFavoriteItemList()
+          : [...(currentFavorites ?? []), formatNewFavoriteItem()]
+
+        LocalStorageHelper.setLocalStorageItemByKey(currentLocalStorageKey, updatedFavoriteList)
+        addToast(
+          <ToastContent>
+            {isDetailInMyFavorite ? 'Remove' : 'Add'} Favorites Successfully!
+          </ToastContent>,
+        )
+      },
+    },
   ]
   const isPageLoading = isFetchingCasts || isFetchingVideos || isFetchingDetail || !detailData
 
@@ -228,9 +277,9 @@ const Detail = ({ type }: Props) => {
             />
           </>
         )}
-        {!isPageLoading && videos.length > 0 && (
+        {!isPageLoading && youtubeVideos.length > 0 && (
           <RelatedVideos<Trailer>
-            list={videos}
+            list={youtubeVideos}
             renderer={(item, index) => (
               <VideoCard item={item} index={index} onCardClick={handleVideoClick} />
             )}
@@ -240,7 +289,7 @@ const Detail = ({ type }: Props) => {
       {videoModalIsActivated && (
         <VideoModal
           onToggleModal={handleClickToggleModal}
-          videos={videos}
+          videos={youtubeVideos}
           onClickVideoItem={handleVideoClick}
           currentSelectedVideoIndex={currentSelectedVideoIndex}
         />
