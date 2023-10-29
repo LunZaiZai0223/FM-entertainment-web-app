@@ -9,8 +9,9 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 // components
 import Navbar from '../../components/Navbar'
 import SearchBar from '../../components/SearchBar'
-import ScrollToTop from '../../components/UI/ScrollToTop'
 import TopProgressBar from '../../components/TopProgressBar'
+import ScrollToTop from '../../components/UI/ScrollToTop'
+import Toast from '../../components/UI/Toast'
 
 // styles
 import theme from '../../styles/theme'
@@ -33,6 +34,7 @@ const BasicLayout = () => {
       <ScrollToTop />
       <ThemeProvider theme={theme}>
         <GlobalStyles />
+        <Toast />
         <SkeletonTheme baseColor='#202020' highlightColor='#444'>
           <Suspense fallback={<TopProgressBar />}>
             <Navbar />

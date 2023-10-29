@@ -1,6 +1,6 @@
 export interface TvSeriesItemByCategoryModel {
   /** 背景圖片路徑 */
-  backdrop_path: string | null
+  backdrop_path?: string
   /** 首播日期 */
   first_air_date: string
   /** 電視節目類型的ID列表 */
@@ -20,7 +20,7 @@ export interface TvSeriesItemByCategoryModel {
   /** 流行度 */
   popularity: number
   /** 海報圖片路徑 */
-  poster_path: string | null
+  poster_path?: string
   /** 平均評分 */
   vote_average: number
   /** 評分數量 */

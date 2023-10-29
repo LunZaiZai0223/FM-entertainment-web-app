@@ -15,6 +15,6 @@ An entertainment web app built with React, TypeScript and styled-component that 
 
 - [x] Router setting (lazy, error handling, suspense...)
 - [x] Search page (10/02)
-- [ ] Personal page(e.g. favorite with chart...)
+- [x] Personal page(e.g. favorite with chart...) (10/29)
 - [ ] Account (e.g. with google)
 - [ ] Better RWD style (e.g. font...)

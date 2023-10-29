@@ -19,4 +19,7 @@ export const RouterPathMap = {
   ON_AIR_TVS: () => RouterPathNameEnum.ON_AIR_TVS,
   TOP_RATED_TVS: () => RouterPathNameEnum.TOP_RATED_TVS,
   GENRE_TVS: () => RouterPathNameEnum.GENRE_TVS,
+  My: () => RouterPathNameEnum.MY,
+  MY_FAVORITE: () => RouterPathNameEnum.MY_FAVORITE,
+  MY_BASIC_SETTINGS: () => RouterPathNameEnum.MY_BASIC_SETTINGS,
 }

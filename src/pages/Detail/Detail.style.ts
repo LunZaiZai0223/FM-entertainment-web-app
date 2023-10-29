@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 // common
-import { DetailTitle, DetailTagline } from '../../styles/common'
+import { DetailTitle, DetailTagline, DetailListItem } from '../../styles/common'
 import { media } from '../../styles/breakpoints'
 
 export const Container = styled.div`
@@ -47,6 +47,17 @@ export const MovieContextContainer = styled.div`
   }
 `
 
+export const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ${media.tablet} {
+    display: block;
+    margin: 0 0 12px;
+  }
+`
+
 export const Title = styled.h1`
   ${DetailTitle};
   color: ${({ theme }) => theme.colors.white};
@@ -57,4 +68,9 @@ export const Tagline = styled.h2`
   ${DetailTagline};
   color: ${({ theme }) => theme.colors.steelGrayBlue};
   margin: 0 0 16px;
+`
+
+export const ToastContent = styled.span`
+  color: ${({ theme }) => theme.colors.white};
+  ${DetailListItem};
 `
