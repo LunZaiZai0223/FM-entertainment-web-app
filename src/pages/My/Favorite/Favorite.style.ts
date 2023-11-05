@@ -3,9 +3,7 @@ import styled from 'styled-components'
 import { DetailSubInfo, BodySubTitle } from '../../../styles/common'
 import { media } from '../../../styles/breakpoints'
 
-export const Container = styled.div`
-  margin: 24px 0 0;
-`
+export const Container = styled.div``
 
 export const SwitchButtonListWrapper = styled.div``
 

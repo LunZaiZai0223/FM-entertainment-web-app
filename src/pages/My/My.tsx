@@ -7,7 +7,7 @@ import { RouterPathMap } from '../../constants/routerPathMap.constant'
 import TabMenu from '../../components/UI/TabMenu'
 
 // styles
-import { Container } from './My.style'
+import { Container, PageContainer } from './My.style'
 
 // local constants
 const FAVORITE = 1
@@ -53,13 +53,15 @@ const My = () => {
             )
           }}
         />
-        {tabContentList.map((item, index) => {
-          return (
-            <TabMenu.TabContent key={index} value={item.value}>
-              {item.content}
-            </TabMenu.TabContent>
-          )
-        })}
+        <PageContainer>
+          {tabContentList.map((item, index) => {
+            return (
+              <TabMenu.TabContent key={index} value={item.value}>
+                {item.content}
+              </TabMenu.TabContent>
+            )
+          })}
+        </PageContainer>
       </TabMenu>
     </Container>
   )
