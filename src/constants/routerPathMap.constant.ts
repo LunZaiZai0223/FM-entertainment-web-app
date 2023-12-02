@@ -22,4 +22,5 @@ export const RouterPathMap = {
   My: () => RouterPathNameEnum.MY,
   MY_FAVORITE: () => RouterPathNameEnum.MY_FAVORITE,
   MY_BASIC_SETTINGS: () => RouterPathNameEnum.MY_BASIC_SETTINGS,
+  ACCOUNT: () => RouterPathNameEnum.ACCOUNT,
 }

@@ -18,4 +18,5 @@ export enum RouterPathNameEnum {
   MY = '/my',
   MY_FAVORITE = '/my/favorite',
   MY_BASIC_SETTINGS = '/my/basic-settings',
+  ACCOUNT = '/account',
 }

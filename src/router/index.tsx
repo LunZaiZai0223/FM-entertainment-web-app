@@ -3,6 +3,7 @@ import { lazy } from 'react'
 
 // layouts
 import BasicLayout from '../layouts/BasicLayout'
+import AccountLayout from '../layouts/AccountLayout'
 
 // pages
 const Home = lazy(() => import('../pages/Home'))
@@ -12,6 +13,7 @@ const Detail = lazy(() => import('../pages/Detail'))
 const MoreCategory = lazy(() => import('../pages/MoreCategory'))
 const Search = lazy(() => import('../pages/Search'))
 const My = lazy(() => import('../pages/My'))
+const Account = lazy(() => import('../pages/Account'))
 
 // component
 import Error from '../components/UI/Error'
@@ -37,6 +39,16 @@ const MORE_CATEGORY_PAGES = [
 ]
 
 const router = createBrowserRouter([
+  {
+    path: RouterPathMap.ACCOUNT(),
+    element: <AccountLayout />,
+    children: [
+      {
+        index: true,
+        element: <Account />,
+      },
+    ],
+  },
   {
     path: RouterPathMap.HOME(),
     element: <BasicLayout />,
