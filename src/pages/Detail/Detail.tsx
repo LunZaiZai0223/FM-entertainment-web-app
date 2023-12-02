@@ -62,8 +62,9 @@ import {
   Title,
   Tagline,
   TitleContainer,
-  ToastContent,
 } from './Detail.style'
+
+import { ToastContent } from '../../components/UI/Toast/Toast.style'
 
 interface Props {
   type: 'MOVIE' | 'TV'

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 // common
-import { DetailTitle, DetailTagline, DetailListItem } from '../../styles/common'
+import { DetailTitle, DetailTagline } from '../../styles/common'
 import { media } from '../../styles/breakpoints'
 
 export const Container = styled.div`
@@ -68,9 +68,4 @@ export const Tagline = styled.h2`
   ${DetailTagline};
   color: ${({ theme }) => theme.colors.steelGrayBlue};
   margin: 0 0 16px;
-`
-
-export const ToastContent = styled.span`
-  color: ${({ theme }) => theme.colors.white};
-  ${DetailListItem};
 `

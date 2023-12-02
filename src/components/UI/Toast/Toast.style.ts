@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 
+import { DetailListItem } from '../../../styles/common'
+
 export const ToastCardContainer = styled(motion.div)`
   padding: 16px;
   background-color: ${({ theme }) => theme.colors.tealBlue};
@@ -25,4 +27,9 @@ export const ToastCardCloseButton = styled.button`
     width: 14px;
     height: 16px;
   }
+`
+
+export const ToastContent = styled.span`
+  color: ${({ theme }) => theme.colors.white};
+  ${DetailListItem};
 `
