@@ -42,6 +42,7 @@ const theme = {
     black: '#000000',
     coalBlack: '#181818',
     transparentBlackAlpha10: 'rgba(0, 0, 0, 0.1)',
+    transparentBlackAlpha75: 'rgba(0, 0, 0, 0.75)',
     lightGraySilver: '#E5E7EB',
   },
   fonts: 'Outfit, sans-serif',

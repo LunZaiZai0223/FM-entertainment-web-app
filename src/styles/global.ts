@@ -92,6 +92,10 @@ const GlobalStyles = createGlobalStyle`
       scroll-behavior: auto !important;
     }
   }
+  
+  #root {
+    height: 100%;
+  }
 
   // 使用 createPortal 時，想要設定 html 註冊的根部元素時需要進來 createGlobalStyle 同步設定
   #toasts-portal {
